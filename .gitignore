@@ -9,3 +9,11 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+/.settings
+/target
+/.classpath
+/.project
+/.idea
+/node_modules
+/grails-app/assets/bower

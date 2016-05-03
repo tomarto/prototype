@@ -1,0 +1,99 @@
+<div>
+    <h3>Search Actions</h3>
+    <form class="form-horizontal" novalidate name="searchActionsForm" id="searchActionsForm">
+        <div class="form-group">
+            <label for="id" class="col-sm-2 control-label">Action Id:</label>
+            <div class="col-sm-4">
+                <input type="number" id="id" name="id" class="form-control" ng-model="actionCtrl.data.id" placeholder="Action Id">
+            </div>
+
+            <div ng-class="searchActionsForm.name.$dirty && searchActionsForm.name.$invalid ? 'has-error' : ''">
+                <label for="name" class="col-sm-2 control-label">Action Name:</label>
+                <div class="col-sm-4">
+                    <input type="text" id="name" name="name" class="form-control" ng-model="actionCtrl.data.name" placeholder="Action Name" ng-pattern="/^([a-zA-Z1-9 ]){0,50}$/">
+                    <div role="alert">
+                        <span class="error control-label" ng-show="searchActionsForm.name.$dirty && searchActionsForm.name.$invalid">Action Name accepts only alphanumeric spaces up to 50 characters</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-class="searchActionsForm.dateCreated.$dirty && searchActionsForm.dateCreated.$invalid ? 'has-error' : ''">
+                <label for="dateCreated" class="col-sm-2 control-label">Date Created:</label>
+                <div class="col-sm-4">
+                    <p class="input-group">
+                        <input type="text" id="dateCreated" name="dateCreated" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="actionCtrl.dateCreated" formatted-date="actionCtrl.data.dateCreated" is-open="actionCtrl.dateOptions.dateCreated.opened" max-date="actionCtrl.dateOptions.dateCreated.maxDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" placeholder="Date Created">
+	                    <span class="input-group-btn">
+	                        <button type="button" class="btn btn-default" ng-click="actionCtrl.openDatepicker('dateCreated')"><i class="glyphicon glyphicon-calendar"></i></button>
+	                    </span>
+                    </p>
+                    <div role="alert">
+                        <span class="error control-label" ng-show="searchActionsForm.dateCreated.$dirty && searchActionsForm.dateCreated.$invalid">Please introduce a valid date in format mm/dd/yyyy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-class="searchActionsForm.dueDate.$dirty && searchActionsForm.dueDate.$invalid ? 'has-error' : ''">
+                <label for="dueDate" class="col-sm-2 control-label">Due Date:</label>
+                <div class="col-sm-4">
+                    <p class="input-group">
+                        <input id="dueDate" type="text" class="form-control" name="dueDate" datepicker-popup="MM/dd/yyyy"  ng-model="actionCtrl.dueDate" formatted-date="actionCtrl.data.dueDate" is-open="actionCtrl.dateOptions.dueDate.opened" min-date="actionCtrl.dateOptions.dueDate.minDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" placeholder="Due Date">
+	                    <span class="input-group-btn">
+	                        <button type="button" class="btn btn-default" ng-click="actionCtrl.openDatepicker('dueDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+	                    </span>
+                    </p>
+                    <div role="alert">
+                        <span class="error control-label" ng-show="searchActionsForm.dueDate.$dirty && searchActionsForm.dueDate.$invalid">Please introduce a valid date in format mm/dd/yyyy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-class="searchActionsForm.rows.$dirty && searchActionsForm.rows.$invalid ? 'has-error' : ''">
+                <label for="rows" class="col-sm-2 control-label">Rows Per Page:</label>
+                <div class="col-sm-4">
+                    <select id="rows" class="form-control" name="rows" ng-model="actionCtrl.data.rows" ng-options="rows for rows in actionCtrl.rows">
+                    </select>
+                    <div role="alert">
+                        <span class="error control-label" ng-show="searchActionsForm.rows.$dirty && searchActionsForm.rows.$invalid">Please select a valid option</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-offset-2 col-sm-4">
+                <button class="btn btn-primary" ng-click="actionCtrl.search(searchActionsForm)" ng-disabled="searchActionsForm.$pristine || searchActionsForm.$invalid">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <hr/>
+
+    <nav>
+        <ul class="pagination">
+            <li ng-repeat="i in actionCtrl.getNumber(actionCtrl.totalPages) track by $index" ng-class="actionCtrl.data.offset / actionCtrl.data.rows == $index ? 'active' : ''" ng-click="actionCtrl.changeOffset($index)"><a ng-href="#">{{$index + 1}}</a></li>
+        </ul>
+    </nav>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">My Actions</div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date Created</th>
+                <th>Due Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="action in actionCtrl.actions">
+                <td>{{action.id}}</td>
+                <td>{{action.name}}</td>
+                <td>{{action.dateCreated}}</td>
+                <td>{{action.dueDate}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
