@@ -4,21 +4,21 @@
 //= require_tree controllers
 //= require_tree directives
 //= require_tree templates
-//= require /angular-ui-router/release/angular-ui-router
-//= require /angular-animate/angular-animate
-//= require /angular-bootstrap/ui-bootstrap-tpls
-//= require /angular-treasure-overlay-spinner/src/treasure-overlay-spinner
+//= require /angular/angular-ui-router
+//= require /angular/angular-animate
+//= require /angular/angular-touch
+//= require /bootstrap/ui-bootstrap-tpls
+//= require /angular-treasure-overlay-spinner/treasure-overlay-spinner.min
 //= require /ngstorage/ngStorage
 
-'use strict';
-
-angular.module("prototype.index", [
-    "prototype.core",
-    'ui.router',
-    "ui.bootstrap",
-    'ngStorage',
-    'treasure-overlay-spinner'
-])
+angular
+    .module('prototype.index', [
+        'prototype.core',
+        'ui.router',
+        'ui.bootstrap',
+        'ngStorage',
+        'treasure-overlay-spinner'
+    ])
     .config(config);
 
 function config($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -26,6 +26,52 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('home', {
             url: '/',
             templateUrl: '/prototype/index/home.html'
+        })
+        .state('quienesSomos', {
+            url: '/quienes-somos',
+            templateUrl: '/prototype/index/who-we-are.html'
+        })
+        .state('ubicacion', {
+            url: '/ubicacion',
+            templateUrl: '/prototype/index/location.html'
+        })
+        .state('reglamento', {
+            url: '/reglamento',
+            templateUrl: '/prototype/index/regulation.html'
+        })
+        .state('torneos', {
+            url: '/torneos',
+            templateUrl: '/prototype/index/tournaments.html'
+        })
+        .state('rolDeJuegos', {
+            url: '/rol-de-juegos',
+            templateUrl: '/prototype/index/game-roles.html'
+        })
+        .state('infoRolDeJuegos', {
+            url: '/rol-de-juegos/:tournament/:category/:group',
+            templateUrl: '/prototype/index/game-roles-info.html'
+        })
+        .state('galeria', {
+            url: '/galeria',
+            templateUrl: '/prototype/index/gallery.html'
+        })
+        .state('galeriaFotos', {
+            url: '/galeria/:id',
+            templateUrl: '/prototype/index/photo-gallery.html',
+            controller: 'PhotoGalleryCtrl',
+            controllerAs: 'photoGalleryCtrl'
+        })
+        .state('sugerencias', {
+            url: '/sugerencias',
+            templateUrl: '/prototype/index/contact.html',
+            controller: 'ContactCtrl',
+            controllerAs: 'contactCtrl'
+        })
+        .state('contacto', {
+            url: '/contacto',
+            templateUrl: '/prototype/index/contact.html',
+            controller: 'ContactCtrl',
+            controllerAs: 'contactCtrl'
         })
         .state('login', {
             url: '/login',
@@ -50,6 +96,7 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
                 }
             }
         });
+
     $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode({

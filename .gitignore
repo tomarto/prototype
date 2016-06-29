@@ -17,3 +17,4 @@ gradle-app.setting
 /.idea
 /node_modules
 /grails-app/assets/bower
+.asscache

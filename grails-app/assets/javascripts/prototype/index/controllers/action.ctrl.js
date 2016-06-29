@@ -1,7 +1,5 @@
 //= wrapped
 
-'use strict';
-
 angular
     .module('prototype.index')
     .controller('ActionCtrl', ActionCtrl);
@@ -33,9 +31,9 @@ function ActionCtrl($state, $sessionStorage, $stateParams, eventFactory, result)
     vm.changeOffset = changeOffset;
     vm.getNumber = getNumber;
 
-    activate();
+    init();
 
-    function activate() {
+    function init() {
         if ($sessionStorage.loggedUser) {
             if (result.errorMessage) {
                 eventFactory.broadcastError(result.errorMessage);

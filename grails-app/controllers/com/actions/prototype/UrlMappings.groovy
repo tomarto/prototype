@@ -12,6 +12,8 @@ class UrlMappings {
                 '/'(controller: 'user', action: 'get')
                 '/register'(controller: 'user', action: 'save')
             }
+
+            '/mail/contact'(controller: 'mail', action: 'send')
         }
 
         '/**'(view:'/index.gsp')

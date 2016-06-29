@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta charset="utf-8">
-        <title>Prototype App</title>
+        <title>Fut 7</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <asset:stylesheet src="application.css"/>
@@ -12,52 +12,72 @@
 
     <body ng-app="prototype" ng-controller="AppCtrl as appCtrl">
         <!--[if lte IE 8]>
-          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+          <p class="browsehappy">Estas usando una versión <strong>desactualizada</strong> de explorador. Por favor <a href="https://www.google.com/chrome/">actualiza tu explorador</a> para tener una mejor experiencia.</p>
         <![endif]-->
 
-        <div class="header">
-            <div class="navbar navbar-default" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#/">Prototype</a>
-                    </div>
+        <treasure-overlay-spinner active='spinner.active'>
 
-                    <div class="collapse navbar-collapse" id="js-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li ui-sref-active="active"><a href ui-sref="home">Home</a></li>
-                            <li ui-sref-active="active" ng-hide="appCtrl.user" class="dropdown">
-                                <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href ui-sref="login">Login</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href ui-sref="register">Register</a></li>
-                                </ul>
-                            </li>
-                            <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="actions">Actions</a></li>
-                            <li ng-show="appCtrl.user" ng-click="appCtrl.logout()"><a href>Logout</a></li>
-                        </ul>
+            <div class="header">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" ng-href="/">Fut 7</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li ui-sref-active="active"><a href ui-sref="home">Inicio</a></li>
+                                <li ui-sref-active="active" class="dropdown">
+                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Información <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href ui-sref="quienesSomos">Quiénes Somos</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="ubicacion">Ubicación</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="reglamento">Reglamento</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="torneos">Torneos</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="rolDeJuegos">Rol de Juegos</a></li>
+                                    </ul>
+                                </li>
+
+                                <li ui-sref-active="active" class="dropdown">
+                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href ui-sref="galeria">Galería de Fotos</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="sugerencias">Sugerencias</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="contacto">Contacto</a></li>
+                                    </ul>
+                                </li>
+
+                                <li ui-sref-active="active" ng-hide="appCtrl.user" ><a href ui-sref="login">Login</a></li>
+                                <li ng-show="appCtrl.user" ng-click="appCtrl.logout()"><a href>Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
-            <treasure-overlay-spinner active='spinner.active'>
-                <span ng-show="appCtrl.errorMsg" alert="" type="danger" close="" ng-bind="appCtrl.errorMsg"></span>
-                <span ng-show="appCtrl.successMsg" alert="" type="success" close="" ng-bind="appCtrl.successMsg"></span>
-                <div ui-view=""></div>
-            </treasure-overlay-spinner>
-        </div>
+            <div class="container">
+                    <span ng-show="appCtrl.errorMsg" uib-alert="" type="danger" close="" ng-bind="appCtrl.errorMsg"></span>
+                    <span ng-show="appCtrl.successMsg" uib-alert="" type="success" close="" ng-bind="appCtrl.successMsg"></span>
+                    <div ui-view=""></div>
+            </div>
+
+        </treasure-overlay-spinner>
 
         <div class="footer">
             <div class="container">
-                <p>&copy; Prototype</p>
+                <p><small>&copy;2016 Fut 7</small></p>
             </div>
         </div>
 

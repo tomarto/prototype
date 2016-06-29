@@ -52,4 +52,18 @@ grails {
             }
         }
     }
+    mail {
+        host = "smtp.gmail.com"
+        port = 587
+        username = "tomarto11@gmail.com"
+        password = ""
+        props = [
+            "mail.smtp.starttls.enable": "true",
+            "mail.smtp.EnableSSL.enable": "true",
+            "mail.smtp.auth": "true",
+            "mail.smtp.socketFactory.port": "587",
+            "mail.smtp.socketFactory.class": "javax.net.ssl.SSLSocketFactory",
+            "mail.smtp.socketFactory.fallback": "false",
+        ]
+    }
 }

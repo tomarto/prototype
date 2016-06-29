@@ -1,6 +1,5 @@
 //= wrapped
 
-'use strict';
 angular
     .module('prototype.index')
     .controller('RegisterCtrl', RegisterCtrl);

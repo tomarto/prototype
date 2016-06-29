@@ -1,7 +1,5 @@
 //= wrapped
 
-'use strict';
-
 angular
     .module('prototype.index')
     .controller('AppCtrl', AppCtrl);
@@ -11,9 +9,9 @@ function AppCtrl($scope, $state, $cacheFactory, $sessionStorage, eventFactory, u
 
     vm.logout = logout;
 
-    activate();
+    init();
 
-    function activate() {
+    function init() {
         if ($sessionStorage.loggedUser) {
             vm.user = $sessionStorage.loggedUser;
         }

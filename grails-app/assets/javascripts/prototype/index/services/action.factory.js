@@ -1,7 +1,5 @@
 //= wrapped
 
-'use strict';
-
 angular
     .module('prototype.index')
     .factory('actionFactory', actionFactory);
