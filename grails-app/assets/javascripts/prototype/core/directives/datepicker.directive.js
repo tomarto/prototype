@@ -1,5 +1,9 @@
 //= wrapped
 
+angular
+    .module('prototype.core')
+    .directive('uibDatepickerPopup', datepickerPopup);
+
 /**
  * @ngdoc function
  * @name prototype.core.directive:datepickerPopup
@@ -9,11 +13,6 @@
  * Since the model used there is formatted as a Date object a new attribute "formattedDate" is added
  * in order to have a String formatted in the date defined in "datepickerPopup" attribute
  */
-'use strict';
-
-angular
-    .module('prototype.core')
-    .directive('datepickerPopup', datepickerPopup);
 
 function datepickerPopup($parse, $filter) {
     return {

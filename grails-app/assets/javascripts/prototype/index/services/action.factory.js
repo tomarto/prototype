@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .factory('actionFactory', actionFactory);
 
-function actionFactory($http, $q, $cacheFactory, $sessionStorage, constant, pendingRequestFactory) {
+function actionFactory($http, $q, $cacheFactory, $sessionStorage, pendingRequestFactory) {
     var actionsCache = $cacheFactory('actions'),
         factory = {
             getActions: getActions
@@ -31,7 +31,7 @@ function actionFactory($http, $q, $cacheFactory, $sessionStorage, constant, pend
                 timeout: request.timeoutPromise
             };
 
-            $http.get(constant.api.actions, requestOptions)
+            $http.get('api/actions', requestOptions)
                 .then(function(response) {
                     actionsCache.put(searchId, response.data.result);
                     deferred.resolve(response.data.result);

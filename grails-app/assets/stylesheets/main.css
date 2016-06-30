@@ -39,6 +39,8 @@ textarea {
     padding-top: 19px;
     color: #777;
     border-top: 1px solid #e5e5e5;
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
 }
 
 .container-narrow > hr {
@@ -67,6 +69,19 @@ textarea {
 @media screen and (min-width: 768px) {
     .container {
         max-width: 730px;
+    }
+    html, body {
+        height: 100%;
+    }
+    body > #container {
+        height: auto; min-height: 100%;
+    }
+    .footer {
+        clear: both;
+        position: relative;
+        z-index: 10;
+        height: 3em;
+        margin-top: -3em;
     }
 
     /* Remove the padding we set earlier */

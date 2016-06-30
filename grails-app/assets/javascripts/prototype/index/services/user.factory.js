@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .factory('userFactory', userFactory);
 
-function userFactory($http, $q, $sessionStorage, constant, eventFactory, pendingRequestFactory) {
+function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFactory) {
     var factory = {
         getUser: getUser,
         login: login,
@@ -24,7 +24,7 @@ function userFactory($http, $q, $sessionStorage, constant, eventFactory, pending
         } else {
             request = pendingRequestFactory.register();
             requestOptions = {
-                url: constant.api.user.get,
+                url: 'api/user',
                 method: 'GET',
                 headers : {
                     'Authorization' : $sessionStorage.authorization
@@ -58,7 +58,7 @@ function userFactory($http, $q, $sessionStorage, constant, eventFactory, pending
 
         request = pendingRequestFactory.register();
         requestOptions = {
-            url: constant.api.user.login,
+            url: 'api/login',
             method: 'POST',
             data: credentials,
             timeout: request.timeoutPromise
@@ -84,7 +84,7 @@ function userFactory($http, $q, $sessionStorage, constant, eventFactory, pending
 
         request = pendingRequestFactory.register();
         requestOptions = {
-            url: constant.api.user.logout,
+            url: 'api/logout',
             method: 'POST',
             headers : {
                 'Authorization' : $sessionStorage.authorization
@@ -110,15 +110,11 @@ function userFactory($http, $q, $sessionStorage, constant, eventFactory, pending
     function register(registerData) {
         var deferred = $q.defer(),
             request,
-            requestOptions = {
-                url: constant.api.user.register,
-                method: 'POST',
-                data: registerData
-            };
+            requestOptions;
 
         request = pendingRequestFactory.register();
         requestOptions = {
-            url: constant.api.user.register,
+            url: 'api/user/register',
             method: 'POST',
             data: registerData,
             timeout: request.timeoutPromise

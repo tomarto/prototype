@@ -65,8 +65,7 @@ function ActionCtrl($state, $sessionStorage, $stateParams, eventFactory, result)
     }
 
     function retrieveData() {
-        var data = angular.copy($sessionStorage[$stateParams.searchId]);
-        return data;
+        return angular.copy($sessionStorage[$stateParams.searchId]);
     }
 
     function changeOffset(offset) {

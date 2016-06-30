@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($state, constant, eventFactory, userFactory) {
+function LoginCtrl($state, eventFactory, userFactory) {
     var vm = this;
 
     vm.credentials = {};

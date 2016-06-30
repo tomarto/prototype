@@ -22,7 +22,7 @@
                 <label for="dateCreated" class="col-sm-2 control-label">Date Created:</label>
                 <div class="col-sm-4">
                     <p class="input-group">
-                        <input type="text" id="dateCreated" name="dateCreated" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="actionCtrl.dateCreated" formatted-date="actionCtrl.data.dateCreated" is-open="actionCtrl.dateOptions.dateCreated.opened" max-date="actionCtrl.dateOptions.dateCreated.maxDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" placeholder="Date Created">
+                        <input type="text" id="dateCreated" name="dateCreated" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="actionCtrl.dateCreated" formatted-date="actionCtrl.data.dateCreated" is-open="actionCtrl.dateOptions.dateCreated.opened" max-date="actionCtrl.dateOptions.dateCreated.maxDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" placeholder="Date Created">
 	                    <span class="input-group-btn">
 	                        <button type="button" class="btn btn-default" ng-click="actionCtrl.openDatepicker('dateCreated')"><i class="glyphicon glyphicon-calendar"></i></button>
 	                    </span>
@@ -37,7 +37,7 @@
                 <label for="dueDate" class="col-sm-2 control-label">Due Date:</label>
                 <div class="col-sm-4">
                     <p class="input-group">
-                        <input id="dueDate" type="text" class="form-control" name="dueDate" datepicker-popup="MM/dd/yyyy"  ng-model="actionCtrl.dueDate" formatted-date="actionCtrl.data.dueDate" is-open="actionCtrl.dateOptions.dueDate.opened" min-date="actionCtrl.dateOptions.dueDate.minDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" placeholder="Due Date">
+                        <input id="dueDate" type="text" class="form-control" name="dueDate" uib-datepicker-popup="MM/dd/yyyy"  ng-model="actionCtrl.dueDate" formatted-date="actionCtrl.data.dueDate" is-open="actionCtrl.dateOptions.dueDate.opened" min-date="actionCtrl.dateOptions.dueDate.minDate" datepicker-options="actionCtrl.dateOptions" close-text="Close" placeholder="Due Date">
 	                    <span class="input-group-btn">
 	                        <button type="button" class="btn btn-default" ng-click="actionCtrl.openDatepicker('dueDate')"><i class="glyphicon glyphicon-calendar"></i></button>
 	                    </span>

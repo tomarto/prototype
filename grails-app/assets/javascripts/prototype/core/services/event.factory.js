@@ -1,7 +1,5 @@
 //= wrapped
 
-'use strict';
-
 angular
     .module('prototype.core')
     .factory('eventFactory', eventFactory);
