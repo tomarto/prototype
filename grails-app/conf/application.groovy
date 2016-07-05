@@ -19,6 +19,17 @@ grails {
                         }
                     }
                 }
+                oauth {
+                    frontendCallbackUrl = { String tokenValue -> "http://localhost:8080/actions?token=${tokenValue}" }
+                    facebook {
+                        client = org.pac4j.oauth.client.FacebookClient
+                        key = '195522433854618'
+                        secret= 'e066dc9d26a25d2e6993d41bf0831de1'
+                        scope = 'email'
+                        fields = 'id,name,first_name,middle_name,last_name'
+                        defaultRoles = ['ROLE_USER']
+                    }
+                }
             }
             rejectIfNoRule = false
             filterChain {

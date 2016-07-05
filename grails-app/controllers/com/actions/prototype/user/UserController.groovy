@@ -41,8 +41,7 @@ class UserController {
         }
 
         newUser.save()
-        def userRole = Role.findByAuthority('ROLE_USER')
-        UserRole.create(newUser, userRole)
+        UserRole.create(newUser, Role.findByAuthority('ROLE_USER'))
 
         res.result = newUser
         respond res

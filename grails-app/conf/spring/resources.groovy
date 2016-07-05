@@ -9,4 +9,8 @@ beans = {
     userJSONRenderer(JsonRenderer, User) {
         excludes = ['password', 'enabled', 'accountExpired', 'accountLocked', 'passwordExpired']
     }
+
+    oauthUserDetailsService(com.prototype.spring.security.DefaultOauthUserDetailsService) { bean ->
+        bean.autowire = 'byName'
+    }
 }

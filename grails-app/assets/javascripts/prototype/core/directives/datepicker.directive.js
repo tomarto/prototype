@@ -2,7 +2,7 @@
 
 angular
     .module('prototype.core')
-    .directive('uibDatepickerPopup', datepickerPopup);
+    .directive('uibDatepickerPopup', uibDatepickerPopup);
 
 /**
  * @ngdoc function
@@ -14,7 +14,7 @@ angular
  * in order to have a String formatted in the date defined in "datepickerPopup" attribute
  */
 
-function datepickerPopup($parse, $filter) {
+function uibDatepickerPopup($parse, $filter) {
     return {
         restrict: 'EAC',
         require: '?formattedDate',

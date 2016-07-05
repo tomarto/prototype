@@ -16,10 +16,12 @@
                             <input id="password" type="password" ng-model="loginCtrl.credentials.password" class="form-control" name="password" value="" placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button ng-click="loginCtrl.login()" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                                <button ng-click="loginCtrl.login()" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Sign in</button>
                             </div>
+                        </div>
+                        <div class="input-group">
+                            <p class="help-block">Not a user? <a href ui-sref="register">Click here</a>!</p>
                         </div>
                     </form>
                 </div>

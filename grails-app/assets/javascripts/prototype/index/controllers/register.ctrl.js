@@ -9,9 +9,10 @@ function RegisterCtrl($state, eventFactory, userFactory) {
 
     vm.dateOptions = {
         formatYear: 'yyyy',
-        startingDay: 1
+        formatMonth: 'MM',
+        startingDay: 1,
+        maxDate: new Date()
     };
-    vm.maxDate = new Date();
     vm.registerData = {};
     vm.status = {opened: false};
 
