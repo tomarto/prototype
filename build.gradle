@@ -123,6 +123,13 @@ bower {
         source 'dist/js/bootstrap.js' >> '/bootstrap/'
         source 'dist/fonts/*' >> '/fonts/'
     }
+    'components-font-awesome'('4.6.3'){
+        source 'css/font-awesome.css' >> '/bootstrap/'
+        source 'fonts/*' >> '/fonts/'
+    }
+    'bootstrap-social'('5.0.0'){
+        source 'bootstrap-social.css' >> '/bootstrap/'
+    }
     'ngstorage'('0.3.x') {
     }
     'angular-treasure-overlay-spinner'('1.1.0') {

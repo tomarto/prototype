@@ -59,7 +59,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-4">
                 <button class="btn btn-primary" ng-click="actionCtrl.search(searchActionsForm)" ng-disabled="searchActionsForm.$pristine || searchActionsForm.$invalid">Search</button>
             </div>
@@ -70,7 +71,7 @@
 
     <nav>
         <ul class="pagination">
-            <li ng-repeat="i in actionCtrl.getNumber(actionCtrl.totalPages) track by $index" ng-class="actionCtrl.data.offset / actionCtrl.data.rows == $index ? 'active' : ''" ng-click="actionCtrl.changeOffset($index)"><a ng-href="#">{{$index + 1}}</a></li>
+            <li ng-repeat="i in actionCtrl.getNumber(actionCtrl.totalPages) track by $index" ng-class="actionCtrl.data.offset / actionCtrl.data.rows == $index ? 'active' : ''" ng-click="actionCtrl.changeOffset($index)"><a ng-href="#" ng-bind="$index + 1"></a></li>
         </ul>
     </nav>
 
@@ -87,11 +88,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="action in actionCtrl.actions">
-                <td>{{action.id}}</td>
-                <td>{{action.name}}</td>
-                <td>{{action.dateCreated}}</td>
-                <td>{{action.dueDate}}</td>
+            <tr ng-repeat="action in actionCtrl.actions">
+                <td ng-bind="action.id"></td>
+                <td ng-bind="action.name"></td>
+                <td ng-bind="action.dateCreated"></td>
+                <td ng-bind="action.dueDate"></td>
             </tr>
             </tbody>
         </table>

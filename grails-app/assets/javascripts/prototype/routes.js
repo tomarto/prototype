@@ -25,6 +25,11 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'RegisterCtrl',
             controllerAs: 'registerCtrl'
         })
+        .state('oauthLogin', {
+            url: '/oauthLogin?token',
+            controller: 'OauthLoginCtrl',
+            controllerAs: 'OauthLoginCtrl'
+        })
         .state('actions', {
             url: '/actions?searchId',
             templateUrl: '/prototype/index/actions.html',

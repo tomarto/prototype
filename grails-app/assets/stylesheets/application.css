@@ -8,6 +8,8 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require /bootstrap/bootstrap
+*= require /bootstrap/font-awesome
+*= require /bootstrap/bootstrap-social
 *= require /angular-treasure-overlay-spinner/treasure-overlay-spinner.min
 *= require main
 *= require prototype
