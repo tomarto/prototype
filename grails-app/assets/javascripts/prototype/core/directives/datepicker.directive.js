@@ -20,14 +20,14 @@ function uibDatepickerPopup($parse, $filter) {
         require: '?formattedDate',
         link: function(scope, element, attrs) {
             scope.$watch(attrs.ngModel, function(newValue, oldValue) {
-                if (newValue && attrs.datepickerPopup) {
-                    $parse(attrs.formattedDate).assign(scope, $filter('date')(newValue, attrs.datepickerPopup));
+                if(newValue !== undefined && attrs.uibDatepickerPopup) {
+                    $parse(attrs.formattedDate).assign(scope, newValue ? $filter('date')(newValue, attrs.uibDatepickerPopup) : null);
                 }
             });
 
             scope.$watch(attrs.formattedDate, function(newValue, oldValue) {
-                if (newValue) {
-                    $parse(attrs.ngModel).assign(scope, new Date(newValue));
+                if(newValue !== undefined) {
+                    $parse(attrs.ngModel).assign(scope, newValue ? new Date(newValue) : null);
                 }
             });
         }

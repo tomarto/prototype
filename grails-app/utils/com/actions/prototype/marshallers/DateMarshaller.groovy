@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct
 
 class DateMarshaller {
 
-    static final DateFormat df = new SimpleDateFormat("MM/dd/yyyy")
+    static final DateFormat df = new SimpleDateFormat('MM/dd/yyyy')
 
     @PostConstruct
     void registerMarshallers() {

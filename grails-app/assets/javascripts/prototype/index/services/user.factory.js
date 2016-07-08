@@ -114,7 +114,7 @@ function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFac
 
         request = pendingRequestFactory.register();
         requestOptions = {
-            url: 'api/user/register',
+            url: 'api/user',
             method: 'POST',
             data: registerData,
             timeout: request.timeoutPromise

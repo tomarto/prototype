@@ -40,6 +40,12 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
                     return actionFactory.getActions($stateParams.searchId);
                 }
             }
+        })
+        .state('checkout', {
+            url: '/checkout',
+            templateUrl: '/prototype/index/checkout.html',
+            controller: 'CheckoutCtrl',
+            controllerAs: 'checkoutCtrl'
         });
 
     $urlRouterProvider.otherwise('/');

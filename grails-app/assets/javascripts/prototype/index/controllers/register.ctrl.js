@@ -8,9 +8,6 @@ function RegisterCtrl($state, eventFactory, userFactory) {
     var vm = this;
 
     vm.dateOptions = {
-        formatYear: 'yyyy',
-        formatMonth: 'MM',
-        startingDay: 1,
         maxDate: new Date()
     };
     vm.registerData = {};
@@ -24,7 +21,7 @@ function RegisterCtrl($state, eventFactory, userFactory) {
     }
 
     function register(registerForm) {
-        if (registerForm.$valid) {
+        if(registerForm.$valid) {
             userFactory.register(vm.registerData)
                 .then(function(response) {
                     eventFactory.broadcastError(undefined);

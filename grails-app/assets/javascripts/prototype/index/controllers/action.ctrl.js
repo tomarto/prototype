@@ -8,19 +8,14 @@ function ActionCtrl($state, $sessionStorage, $stateParams, eventFactory, result)
     var vm = this;
 
     vm.data = {};
-    vm.dateOptions = {
-        formatYear: 'yyyy',
-        startingDay: 1
-    };
-    vm.dateOptions = {
-        dateCreated: {
-            maxDate: new Date(),
-            opened: false
-        },
-        dueDate: {
-            maxDate: new Date(),
-            opened: false
+    vm.dateCreatedPopup = {
+        opened: false,
+        dateOptions: {
+            maxDate: new Date()
         }
+    };
+    vm.dueDatePopup = {
+        opened: false
     };
     vm.rows = [10, 25, 50, 100];
     vm.data.rows = vm.rows[1];
@@ -51,7 +46,7 @@ function ActionCtrl($state, $sessionStorage, $stateParams, eventFactory, result)
     }
 
     function openDatepicker(datePicker) {
-        vm.dateOptions[datePicker].opened = true;
+        vm[datePicker].opened = true;
     }
 
     function search(searchActionsForm) {

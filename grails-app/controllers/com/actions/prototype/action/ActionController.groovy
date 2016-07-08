@@ -1,43 +1,17 @@
 package com.actions.prototype.action
 
+import com.actions.prototype.BaseController
+import com.actions.prototype.actions.command.ActionCommand
 import grails.plugin.springsecurity.annotation.Secured
-import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
-class ActionController {
+class ActionController extends BaseController {
 
-    static allowedMethods = [list: "GET"]
-    static responseFormats = ['json']
+    ActionService actionService
 
-    @Secured('isAuthenticated()')
-    def list(Integer max) {
-        def rows = params.rows ? Integer.parseInt(params.rows) : 25
-        def offset = params.offset ? Integer.parseInt(params.offset) : 0
-
-        def list = Action.createCriteria().list(max: rows, offset: offset) {
-            if (params.id) {
-                eq('id', Integer.parseInt(params.id))
-            }
-            if (params.name) {
-                eq('name', params.name)
-            }
-            if (params.dateCreated) {
-                def dateCreated = Date.parse('MM/dd/yyyy', params.dateCreated)
-                between('dateCreated', dateCreated, dateCreated + 1)
-            }
-            if (params.dueDate) {
-                def dueDate = Date.parse('MM/dd/yyyy', params.dueDate)
-                between('dueDate', dueDate, dueDate + 1)
-            }
+    @Secured(value = ['isAuthenticated()'], httpMethod = 'GET')
+    def list(ActionCommand actionCommand) {
+        executeSafelyForJSON("list()", 'Unable to fetch Actions', log) {
+            return actionService.getActions(actionCommand)
         }
-
-        def res = [
-                result: [
-                        actions: list,
-                        total: list.totalCount
-                ]
-        ]
-
-        respond res
     }
 }

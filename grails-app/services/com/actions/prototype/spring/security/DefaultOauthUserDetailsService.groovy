@@ -1,4 +1,4 @@
-package com.prototype.spring.security
+package com.actions.prototype.spring.security
 
 import com.actions.prototype.user.Role
 import com.actions.prototype.user.User

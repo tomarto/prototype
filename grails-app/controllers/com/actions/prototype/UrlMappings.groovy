@@ -4,16 +4,17 @@ class UrlMappings {
 
     static mappings = {
         group '/api', {
-            '/application/index'(controller: 'application', action: 'index')
+            get '/application/index'(controller: 'application', action: 'index')
 
-            '/actions'(controller: 'action', action: 'list')
+            get '/actions'(controller: 'action', action: 'list')
 
             group '/user', {
-                '/'(controller: 'user', action: 'get')
-                '/register'(controller: 'user', action: 'save')
+                get '/'(controller: 'user', action: 'get')
+                post '/'(controller: 'user', action: 'save')
             }
 
             '/mail/contact'(controller: 'mail', action: 'send')
+            post '/pay'(controller: 'payment', action: 'pay')
         }
 
         '/**'(view:'/index.gsp')

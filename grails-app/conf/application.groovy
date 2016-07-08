@@ -20,7 +20,7 @@ grails {
                     }
                 }
                 oauth {
-                    frontendCallbackUrl = { String tokenValue -> "http://localhost:8080/actions?token=${tokenValue}" }
+                    frontendCallbackUrl = { String tokenValue -> "http://localhost:8080/oauthLogin?token=${tokenValue}" }
                     facebook {
                         client = org.pac4j.oauth.client.FacebookClient
                         key = '195522433854618'

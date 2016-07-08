@@ -6,8 +6,6 @@ import grails.plugins.GrailsPluginManager
 
 class ApplicationController {
 
-    static allowedMethods = [index: 'GET']
-
     GrailsApplication grailsApplication
     GrailsPluginManager pluginManager
 

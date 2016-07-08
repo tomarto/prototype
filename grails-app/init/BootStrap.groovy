@@ -2,11 +2,14 @@ import com.actions.prototype.action.Action
 import com.actions.prototype.user.Role
 import com.actions.prototype.user.User
 import com.actions.prototype.user.UserRole
+import com.stripe.Stripe
 
 class BootStrap {
 
     def init = {
         servletContext ->
+            Stripe.apiKey = 'sk_test_BQokikJOvBiI2HlWgH4olfQ2'
+
             new Action(id: 1, name: 'Action 1', dateCreated: Date.parse('MM/dd/yyyy', '02/23/2015'), dueDate: Date.parse('MM/dd/yyyy', '08/13/2015')).save()
             new Action(id: 2, name: 'Action 2', dateCreated: Date.parse('MM/dd/yyyy', '08/14/2012'), dueDate: Date.parse('MM/dd/yyyy', '04/19/2019')).save()
             new Action(id: 3, name: 'Action 3', dateCreated: Date.parse('MM/dd/yyyy', '08/16/2014'), dueDate: Date.parse('MM/dd/yyyy', '01/15/2016')).save()
@@ -28,7 +31,7 @@ class BootStrap {
             new Action(id: 19, name: 'Action 19', dateCreated: Date.parse('MM/dd/yyyy', '11/09/2006'), dueDate: Date.parse('MM/dd/yyyy', '08/16/2024')).save()
             new Action(id: 20, name: 'Action 20', dateCreated: Date.parse('MM/dd/yyyy', '06/10/2008'), dueDate: Date.parse('MM/dd/yyyy', '09/24/2027')).save()
 
-            def adminRole = new Role('ROLE_ADMIN').save()
+            new Role('ROLE_ADMIN').save()
             def userRole = new Role('ROLE_USER').save()
 
             def testUser = new User(username: 'omar.ortiz', firstName: 'Omar', lastName: 'Ortiz', password: '123456', email: 'omar.ortiz@test.com',

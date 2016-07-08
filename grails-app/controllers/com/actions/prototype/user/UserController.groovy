@@ -1,49 +1,24 @@
 package com.actions.prototype.user
 
+import com.actions.prototype.BaseController
+import com.actions.prototype.user.command.UserCommand
 import grails.plugin.springsecurity.annotation.Secured
-import grails.transaction.Transactional
 
-class UserController {
+class UserController extends BaseController {
 
-    static allowedMethods = [get: 'GET', save: 'POST']
-    static responseFormats = ['json']
+    UserService userService
 
-    def springSecurityService
-
-    @Secured('isAuthenticated()')
+    @Secured(value = ['isAuthenticated()'], httpMethod = 'GET')
     def get() {
-        def res = [
-            result: springSecurityService.currentUser
-        ]
-        respond res
+        executeSafelyForJSON("get()", 'Unable to fetch User details', log) {
+            return userService.getLoggedUser()
+        }
     }
 
-    @Transactional
-    @Secured('isAnonymous()')
-    def save() {
-        def res = [:]
-        def jsonObject = request.JSON
-
-        if (User.findByUsername(jsonObject.username)) {
-            res.error = 'Username already exist.'
-            response.status = 409
-            respond res
-            return
+    @Secured(value = ['isAnonymous()'], httpMethod = 'POST')
+    def save(UserCommand userCommand) {
+        executeSafelyForJSON("save($userCommand)", 'Unable to save new User', log) {
+            return userService.save(userCommand)
         }
-
-        def newUser = new User(jsonObject)
-
-        if (!jsonObject?.password.equals(jsonObject?.passwordConfirmation) || newUser.hasErrors()) {
-            res.error = 'Please verify the fields.'
-            response.status = 400
-            respond res
-            return
-        }
-
-        newUser.save()
-        UserRole.create(newUser, Role.findByAuthority('ROLE_USER'))
-
-        res.result = newUser
-        respond res
     }
 }
