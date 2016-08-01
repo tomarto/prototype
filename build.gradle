@@ -92,6 +92,11 @@ task wrapper(type: Wrapper) {
 bower {
     installBase = 'grails-app/assets/bower'
 
+    additional = [
+        'strict-ssl': false,
+        'https-proxy': ''
+    ]
+
     'angular'('1.4.10') {
         source 'angular.js' >> '/angular/'
     }

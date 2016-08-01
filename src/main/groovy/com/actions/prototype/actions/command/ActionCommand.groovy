@@ -1,10 +1,9 @@
 package com.actions.prototype.actions.command
 
+import grails.validation.Validateable
 import org.grails.databinding.BindingFormat
 
-import java.time.LocalDate
-
-class ActionCommand {
+class ActionCommand implements Validateable {
 
     Integer id
     String name
