@@ -46,6 +46,17 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
             templateUrl: '/prototype/index/checkout.html',
             controller: 'CheckoutCtrl',
             controllerAs: 'checkoutCtrl'
+        })
+        .state('comprobantes', {
+            url: '/comprobantes',
+            templateUrl: '/prototype/index/comprobantes.html',
+            controller: 'ComprobantesCtrl',
+            controllerAs: 'comprobantesCtrl',
+            resolve: {
+                comprobantes: function(comprobantesFactory) {
+                    return comprobantesFactory.getComprobantes();
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/');

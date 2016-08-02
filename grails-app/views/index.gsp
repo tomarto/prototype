@@ -42,7 +42,7 @@
                                     </ul>
                                 </li>
                                 <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="actions">Actions</a></li>
-                                <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="checkout">Checkout</a></li>
+                                <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="comprobantes">Comprobantes</a></li>
                                 <li ng-show="appCtrl.user" ng-click="appCtrl.logout()"><a href>Logout</a></li>
                             </ul>
                         </div>

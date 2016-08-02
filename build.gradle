@@ -136,12 +136,10 @@ bower {
     'bootstrap-social'('5.0.0'){
         source 'bootstrap-social.css' >> '/bootstrap/'
     }
-    'ngstorage'('0.3.x') {
-    }
-    'angular-treasure-overlay-spinner'('1.1.0') {
-    }
-    'angularjs-toaster'('2.0.0'){
-    }
+    'ngstorage'('0.3.x')
+    'angular-treasure-overlay-spinner'('1.1.0')
+    'angularjs-toaster'('2.0.0')
+    'angular-charts'('0.2.7')
 }
 
 karma {

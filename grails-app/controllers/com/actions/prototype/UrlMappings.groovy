@@ -15,6 +15,8 @@ class UrlMappings {
 
             '/mail/contact'(controller: 'mail', action: 'send')
             post '/pay'(controller: 'payment', action: 'pay')
+
+            get '/graph'(controller: 'graph', action: 'get')
         }
 
         '/**'(view:'/index.gsp')
