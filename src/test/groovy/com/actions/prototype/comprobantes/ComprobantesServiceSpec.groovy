@@ -1,4 +1,4 @@
-package com.actions.prototype.graphs
+package com.actions.prototype.comprobantes
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(GraphService)
-class GraphServiceSpec extends Specification {
+@TestFor(ComprobantesService)
+class ComprobantesServiceSpec extends Specification {
 
     def setup() {
     }

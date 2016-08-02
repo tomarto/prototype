@@ -1,17 +1,24 @@
-package com.actions.prototype.graph.jaxb
+package com.actions.prototype.jaxb.comprobantes
 
 import javax.xml.bind.annotation.XmlAccessType
 import javax.xml.bind.annotation.XmlAccessorType
 import javax.xml.bind.annotation.XmlAttribute
+import javax.xml.bind.annotation.XmlRootElement
 
 @XmlAccessorType(XmlAccessType.FIELD)
-class Traslado {
+class Concepto {
 
     @XmlAttribute
-    String impuesto
+    Integer cantidad
 
     @XmlAttribute
-    Double tasa
+    String unidad
+
+    @XmlAttribute
+    String descripcion
+
+    @XmlAttribute
+    Double valorUnitario
 
     @XmlAttribute
     Double importe

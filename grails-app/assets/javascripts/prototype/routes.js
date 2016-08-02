@@ -49,12 +49,12 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('comprobantes', {
             url: '/comprobantes',
-            templateUrl: '/prototype/index/comprobantes.html',
+            templateUrl: '/prototype/comprobantes/comprobantes.html',
             controller: 'ComprobantesCtrl',
             controllerAs: 'comprobantesCtrl',
             resolve: {
-                comprobantes: function(comprobantesFactory) {
-                    return comprobantesFactory.getComprobantes();
+                comprobantes: function(comprobantesService) {
+                    return comprobantesService.getComprobantes();
                 }
             }
         });

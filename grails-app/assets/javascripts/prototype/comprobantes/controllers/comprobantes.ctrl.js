@@ -1,7 +1,7 @@
 //= wrapped
 
 angular
-    .module('prototype.index')
+    .module('prototype.comprobantes')
     .controller('ComprobantesCtrl', ComprobantesCtrl);
 
 function ComprobantesCtrl($filter, comprobantes) {

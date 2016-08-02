@@ -1,10 +1,10 @@
 //= wrapped
 
 angular
-    .module('prototype.index')
-    .factory('comprobantesFactory', graphFactory);
+    .module('prototype.comprobantes')
+    .factory('comprobantesService', comprobantesService);
 
-function graphFactory($http, $q, $cacheFactory, $sessionStorage, pendingRequestFactory) {
+function comprobantesService($http, $q, $cacheFactory, $sessionStorage, pendingRequestFactory) {
     var comprobantesCache = $cacheFactory('comprobantes'),
         factory = {
             getComprobantes: getComprobantes
@@ -29,7 +29,7 @@ function graphFactory($http, $q, $cacheFactory, $sessionStorage, pendingRequestF
                 timeout: request.timeoutPromise
             };
 
-            $http.get('api/graph', requestOptions)
+            $http.get('api/comprobantes', requestOptions)
                 .then(function(response) {
                     comprobantesCache.put('comprobantes', response.data.result.comprobantes);
                     deferred.resolve(response.data.result.comprobantes);

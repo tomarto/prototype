@@ -13,15 +13,16 @@
 //= require_self
 //= require /prototype/core/prototype.core
 //= require /prototype/index/prototype.index
+//= require /prototype/comprobantes/prototype.comprobantes
 //= require /prototype/routes
 
 angular
     .module('prototype', [
         'prototype.core',
         'prototype.index',
+        'prototype.comprobantes',
         'ui.router',
         'ui.bootstrap',
         'ngStorage',
-        'treasure-overlay-spinner',
-        'angularCharts'
+        'treasure-overlay-spinner'
     ]);

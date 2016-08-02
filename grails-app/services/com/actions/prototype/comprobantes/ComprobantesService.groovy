@@ -1,13 +1,13 @@
-package com.actions.prototype.graphs
+package com.actions.prototype.comprobantes
 
-import com.actions.prototype.graph.jaxb.Comprobante
+import com.actions.prototype.jaxb.comprobantes.Comprobante
 import grails.transaction.Transactional
 
 import javax.xml.bind.JAXBContext
 import javax.xml.bind.Unmarshaller
 
 @Transactional
-class GraphService {
+class ComprobantesService {
 
     static Unmarshaller unmarshaller = JAXBContext.newInstance(Comprobante.class).createUnmarshaller()
 

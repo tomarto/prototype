@@ -1,4 +1,4 @@
-package com.actions.prototype.graph.jaxb
+package com.actions.prototype.jaxb.comprobantes
 
 import javax.xml.bind.annotation.*
 
