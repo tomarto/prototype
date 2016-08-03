@@ -27,7 +27,7 @@ function ComprobantesCtrl($filter, comprobantes) {
     function init() {
         var data = [];
         angular.forEach(comprobantes, function(comprobante) {
-            var fecha = $filter('date')(new Date(comprobante.fecha), 'MMM-yyyy');
+            var fecha = $filter('date')(new Date(comprobante.fecha.month + '/' + comprobante.fecha.day + '/' + comprobante.fecha.year), 'MMM-yyyy');
             if(!$filter('filter')(data, {x: fecha}, true)[0]) {
                 data.push(
                     {

@@ -1,4 +1,5 @@
 import com.actions.prototype.action.Action
+import com.actions.prototype.json.CustomObjectMarshallers
 import com.actions.prototype.user.Role
 import com.actions.prototype.user.User
 import com.actions.prototype.user.UserRole
@@ -37,6 +38,9 @@ class BootStrap {
             def testUser = new User(username: 'omar.ortiz', firstName: 'Omar', lastName: 'Ortiz', password: '123456', email: 'omar.ortiz@test.com',
                     birthDate: Date.parse('MM/dd/yyyy', '11/23/1990')).save()
             UserRole.create(testUser, userRole)
+
+
+            CustomObjectMarshallers.init()
     }
 
     def destroy = {

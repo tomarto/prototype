@@ -1,6 +1,6 @@
 package com.actions.prototype.comprobantes
 
-import com.actions.prototype.jaxb.comprobantes.Comprobante
+import com.actions.prototype.generated.jaxb.comprobantes.Comprobante
 import grails.transaction.Transactional
 
 import javax.xml.bind.JAXBContext
@@ -20,6 +20,7 @@ class ComprobantesService {
                 files.each {file ->
                     result << unmarshaller.unmarshal(file)
                 }
+                println "RESULT: $result"
                 return [comprobantes: result]
             }
         }

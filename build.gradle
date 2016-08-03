@@ -13,6 +13,7 @@ buildscript {
         classpath "gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.5.1"
         classpath "org.grails.plugins:hibernate4:5.0.4"
         classpath "org.grails.plugins:views-gradle:1.0.8"
+        classpath "com.github.jacobono:gradle-jaxb-plugin:1.3.6"
     }
 }
 
@@ -28,6 +29,7 @@ apply plugin:"com.craigburke.karma"
 apply plugin:"com.craigburke.bower-installer"
 apply plugin:"asset-pipeline"
 apply plugin:"org.grails.plugins.views-json"
+apply plugin:"com.github.jacobono.jaxb"
 
 ext {
     grailsVersion = project.grailsVersion
@@ -84,6 +86,9 @@ dependencies {
     testCompile "org.grails:grails-datastore-rest-client"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
+    jaxb 'com.sun.xml.bind:jaxb-xjc:2.2.7-b41'
+    jaxb 'com.sun.xml.bind:jaxb-impl:2.2.7-b41'
+    jaxb 'javax.xml.bind:jaxb-api:2.2.7'
 }
 
 task wrapper(type: Wrapper) {
@@ -159,4 +164,11 @@ karma {
 assets {
     minifyJs = true
     minifyCss = true
+}
+
+jaxb {
+    xsdDir = "src/main/resources/schemas/Comprobantes"
+    xjc {
+        generatePackage = "com.actions.prototype.generated.jaxb.comprobantes"
+    }
 }
