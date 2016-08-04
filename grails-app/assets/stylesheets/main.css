@@ -57,17 +57,16 @@ textarea {
     padding: 14px 24px;
 }
 
-.chart {
-    width: 800px;
-    height: 600px;
-}
-
 /* Supporting marketing content */
 .marketing {
     margin: 40px 0;
 }
 .marketing p + h4 {
     margin-top: 28px;
+}
+
+@media (min-width: 480px) {
+
 }
 
 /* Responsive: Portrait tablets and up */
@@ -91,4 +90,12 @@ textarea {
     .jumbotron {
         border-bottom: 0;
     }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+
 }

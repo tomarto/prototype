@@ -1,4 +1,6 @@
 //= wrapped
+//= require /chartjs/Chart
+//= require /chartjs/angular-chart
 //= require_self
 //= require_tree services
 //= require_tree controllers
@@ -8,5 +10,5 @@
 angular
     .module('prototype.comprobantes', [
         'prototype.core',
-        'angularCharts'
+        'chart.js'
     ]);

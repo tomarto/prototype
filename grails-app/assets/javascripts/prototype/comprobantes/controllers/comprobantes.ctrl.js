@@ -7,41 +7,21 @@ angular
 function ComprobantesCtrl($filter, comprobantes) {
     var vm = this;
 
+    vm.labels = [];
+    vm.data = [[]];
     vm.comprobantes = comprobantes;
-    vm.config = {
-        title: 'Comprobantes',
-        tooltips: true,
-        labels: false,
-        mouseover: function() {},
-        mouseout: function() {},
-        click: function() {},
-        legend: {
-            display: true,
-            //could be 'left, right'
-            position: 'right'
-        }
-    };
 
     init();
 
     function init() {
-        var data = [];
+        vm.series = [comprobantes[0].receptor.nombre];
+
         angular.forEach(comprobantes, function(comprobante) {
             var fecha = $filter('date')(new Date(comprobante.fecha.month + '/' + comprobante.fecha.day + '/' + comprobante.fecha.year), 'MMM-yyyy');
-            if(!$filter('filter')(data, {x: fecha}, true)[0]) {
-                data.push(
-                    {
-                        x: fecha,
-                        y: [comprobante.subTotal],
-                        tooltip: comprobante.receptor.nombre
-                    }
-                );
+            if(vm.labels.indexOf(fecha) === -1) {
+                vm.labels.push(fecha);
+                vm.data[0].push(comprobante.subTotal);
             }
         });
-
-        vm.data = {
-            series: ['Subtotal'],
-            data: data
-        };
     }
 }

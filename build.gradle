@@ -94,6 +94,7 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
+
 bower {
     installBase = 'grails-app/assets/bower'
 
@@ -134,17 +135,20 @@ bower {
         source 'dist/js/bootstrap.js' >> '/bootstrap/'
         source 'dist/fonts/*' >> '/fonts/'
     }
-    'components-font-awesome'('4.6.3'){
+    'components-font-awesome'('4.6.3') {
         source 'css/font-awesome.css' >> '/bootstrap/'
         source 'fonts/*' >> '/fonts/'
     }
-    'bootstrap-social'('5.0.0'){
+    'bootstrap-social'('5.0.0') {
         source 'bootstrap-social.css' >> '/bootstrap/'
     }
     'ngstorage'('0.3.x')
     'angular-treasure-overlay-spinner'('1.1.0')
     'angularjs-toaster'('2.0.0')
-    'angular-charts'('0.2.7')
+    'chartjs'('2.0.2')
+    'angular-chart.js'('1.0.0') {
+        source 'angular-chart.js' >> '/chartjs/'
+    }
 }
 
 karma {
