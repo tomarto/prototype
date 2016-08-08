@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .controller('RegisterCtrl', RegisterCtrl);
 
-function RegisterCtrl($state, eventFactory, userFactory) {
+function RegisterCtrl($state, userFactory, toasterService) {
     var vm = this;
 
     vm.dateOptions = {
@@ -24,12 +24,11 @@ function RegisterCtrl($state, eventFactory, userFactory) {
         if(registerForm.$valid) {
             userFactory.register(vm.registerData)
                 .then(function(response) {
-                    eventFactory.broadcastError(undefined);
                     $state.go('login');
-                    eventFactory.broadcastSuccess('You have been successfully registered.');
+                    toasterService.success('You have been successfully registered');
                 }, function(response) {
-                    eventFactory.broadcastError(response.errorMessage ? response.errorMessage :
-                        'An error ocurred while trying to register user. Please try again later.');
+                    toasterService.error(response.errorMessage ||
+                            'An error ocurred while trying to register user. Please try again later');
                 });
         }
     }

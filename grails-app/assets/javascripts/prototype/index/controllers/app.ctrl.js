@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .controller('AppCtrl', AppCtrl);
 
-function AppCtrl($scope, $state, $cacheFactory, $sessionStorage, eventFactory, userFactory) {
+function AppCtrl($scope, $state, $cacheFactory, $sessionStorage, userFactory, notifyingService, toasterService) {
     var vm = this;
 
     vm.logout = logout;
@@ -12,6 +12,8 @@ function AppCtrl($scope, $state, $cacheFactory, $sessionStorage, eventFactory, u
     init();
 
     function init() {
+        notifyingService.subscribe($scope, 'login', login);
+
         if ($sessionStorage.loggedUser) {
             vm.user = $sessionStorage.loggedUser;
         }
@@ -26,28 +28,13 @@ function AppCtrl($scope, $state, $cacheFactory, $sessionStorage, eventFactory, u
                         $cacheFactory.get(item.id).removeAll();
                     }
                 });
-                eventFactory.broadcastError(undefined);
                 $state.go('home', {}, {reload: true});
             }, function(response) {
-                eventFactory.broadcastError(
-                    'An error ocurred while logging out. Please try again later');
+                toasterService.error('An error ocurred while logging out. Please try again later');
             });
     }
 
-    $scope.$on('login', function(event, user) {
+    function login(event, user) {
         vm.user = user;
-    });
-
-    $scope.$on('error', function(event, message) {
-        vm.errorMsg = message;
-    });
-
-    $scope.$on('success', function(event, message) {
-        vm.successMsg = message;
-    });
-
-    $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        vm.errorMsg = undefined;
-        vm.successMsg = undefined;
-    });
+    }
 }

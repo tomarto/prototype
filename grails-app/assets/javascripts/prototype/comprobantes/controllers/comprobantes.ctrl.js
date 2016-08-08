@@ -14,9 +14,9 @@ function ComprobantesCtrl($filter, comprobantes) {
     init();
 
     function init() {
-        vm.series = [comprobantes[0].receptor.nombre];
+        vm.series = [vm.comprobantes[0].receptor.nombre];
 
-        angular.forEach(comprobantes, function(comprobante) {
+        angular.forEach(vm.comprobantes, function(comprobante) {
             var fecha = $filter('date')(new Date(comprobante.fecha.month + '/' + comprobante.fecha.day + '/' + comprobante.fecha.year), 'MMM-yyyy');
             if(vm.labels.indexOf(fecha) === -1) {
                 vm.labels.push(fecha);

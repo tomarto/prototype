@@ -1,6 +1,8 @@
 //= wrapped
 //= require /chartjs/Chart
 //= require /chartjs/angular-chart
+//= require /ng-file-upload/ng-file-upload
+//= require /ng-file-upload/ng-file-upload-shim
 //= require_self
 //= require_tree services
 //= require_tree controllers
@@ -10,5 +12,6 @@
 angular
     .module('prototype.comprobantes', [
         'prototype.core',
-        'chart.js'
+        'chart.js',
+        'ngFileUpload'
     ]);

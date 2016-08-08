@@ -32,7 +32,8 @@ function paymentFactory($http, $q, $sessionStorage, pendingRequestFactory) {
             .then(function(response) {
                 deferred.resolve(response);
                 pendingRequestFactory.complete(request);
-            }, function(response) {
+            })
+            .catch(function(response) {
                 deferred.reject(response);
                 pendingRequestFactory.complete(request);
             });

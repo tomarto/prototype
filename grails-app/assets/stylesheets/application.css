@@ -11,6 +11,8 @@
 *= require /bootstrap/font-awesome
 *= require /bootstrap/bootstrap-social
 *= require /angular-treasure-overlay-spinner/treasure-overlay-spinner.min
+*= require /angularjs-toaster/toaster
+*= require_tree /fonts
 *= require main
 *= require prototype
 *= require mobile

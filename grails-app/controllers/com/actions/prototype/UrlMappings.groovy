@@ -16,7 +16,10 @@ class UrlMappings {
             '/mail/contact'(controller: 'mail', action: 'send')
             post '/pay'(controller: 'payment', action: 'pay')
 
-            get '/comprobantes'(controller: 'comprobantes', action: 'get')
+            group '/comprobantes', {
+                get '/'(controller: 'comprobantes', action: 'get')
+                post '/'(controller: 'comprobantes', action: 'save')
+            }
         }
 
         '/**'(view:'/index.gsp')

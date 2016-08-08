@@ -47,6 +47,12 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'CheckoutCtrl',
             controllerAs: 'checkoutCtrl'
         })
+        .state('subirComprobantes', {
+            url: '/subir-comprobantes',
+            templateUrl: '/prototype/comprobantes/guardar-comprobantes.html',
+            controller: 'GuardarComprobantesCtrl',
+            controllerAs: 'guardarComprobantesCtrl'
+        })
         .state('comprobantes', {
             url: '/comprobantes',
             templateUrl: '/prototype/comprobantes/comprobantes.html',

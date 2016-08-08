@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .factory('userFactory', userFactory);
 
-function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFactory) {
+function userFactory($http, $q, $sessionStorage, notifyingService, pendingRequestFactory) {
     var factory = {
         getUser: getUser,
         login: login,
@@ -35,10 +35,11 @@ function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFac
             $http(requestOptions)
                 .then(function(response) {
                     $sessionStorage.loggedUser = response.data.result;
-                    eventFactory.broadcast('login', response.data.result);
+                    notifyingService.notify('login', response.data.result);
                     deferred.resolve(response.data.result);
                     pendingRequestFactory.complete(request);
-                }, function(response) {
+                })
+                .catch(function(response) {
                     deferred.reject(response.data);
                     pendingRequestFactory.complete(request);
                 });
@@ -69,7 +70,8 @@ function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFac
                 $sessionStorage.authorization = response.data.token_type + ' ' + response.data.access_token;
                 deferred.resolve('Success');
                 pendingRequestFactory.complete(request);
-            }, function(response) {
+            })
+            .catch(function(response) {
                 deferred.reject('Error');
                 pendingRequestFactory.complete(request);
             });
@@ -99,7 +101,8 @@ function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFac
                 delete $sessionStorage.loggedUser;
                 deferred.resolve('Success');
                 pendingRequestFactory.complete(request);
-            }, function(response) {
+            })
+            .catch(function(response) {
                 deferred.reject('Error');
                 pendingRequestFactory.complete(request);
             });
@@ -124,7 +127,8 @@ function userFactory($http, $q, $sessionStorage, eventFactory, pendingRequestFac
             .then(function(response) {
                 deferred.resolve(response.data.result);
                 pendingRequestFactory.complete(request);
-            }, function(response) {
+            })
+            .catch(function(response) {
                 deferred.reject(response.data);
                 pendingRequestFactory.complete(request);
             });

@@ -15,6 +15,14 @@
           <p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="https://www.google.com/chrome/">update your explorer</a> for a better experience.</p>
         <![endif]-->
 
+        <toaster-container toaster-options="
+            {
+                'position-class': 'toast-top-center',
+                'time-out': { 'toast-success': 3000 },
+                'close-button': { 'toast-error': true, 'toast-warning': true }
+            }">
+        </toaster-container>
+
         <treasure-overlay-spinner active='spinner.active'>
 
             <div class="header">
@@ -42,7 +50,14 @@
                                     </ul>
                                 </li>
                                 <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="actions">Actions</a></li>
-                                <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="comprobantes">Comprobantes</a></li>
+                                <li ui-sref-active="active" ng-show="appCtrl.user" class="dropdown">
+                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comprobantes <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href ui-sref="subirComprobantes">Subir Comprobantes</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href ui-sref="comprobantes">Gráficas</a></li>
+                                    </ul>
+                                </li>
                                 <li ng-show="appCtrl.user" ng-click="appCtrl.logout()"><a href>Logout</a></li>
                             </ul>
                         </div>

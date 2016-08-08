@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .controller('ActionCtrl', ActionCtrl);
 
-function ActionCtrl($state, $sessionStorage, $stateParams, eventFactory, result) {
+function ActionCtrl($state, $sessionStorage, $stateParams, result, toasterService) {
     var vm = this;
 
     vm.data = {};
@@ -31,7 +31,7 @@ function ActionCtrl($state, $sessionStorage, $stateParams, eventFactory, result)
     function init() {
         if ($sessionStorage.loggedUser) {
             if (result.errorMessage) {
-                eventFactory.broadcastError(result.errorMessage);
+                toasterService.error(result.errorMessage);
                 return;
             }
             if ($sessionStorage[$stateParams.searchId]) {

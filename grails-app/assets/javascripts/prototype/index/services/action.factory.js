@@ -36,7 +36,8 @@ function actionFactory($http, $q, $cacheFactory, $sessionStorage, pendingRequest
                     actionsCache.put(searchId, response.data.result);
                     deferred.resolve(response.data.result);
                     pendingRequestFactory.complete(request);
-                }, function(response) {
+                })
+                .catch(function(response) {
                     deferred.reject(response.data);
                     pendingRequestFactory.complete(request);
                 });

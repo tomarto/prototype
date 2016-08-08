@@ -4,7 +4,7 @@ angular
     .module('prototype.index')
     .controller('CheckoutCtrl', CheckoutCtrl);
 
-function CheckoutCtrl(eventFactory, paymentFactory) {
+function CheckoutCtrl(paymentFactory, toasterService) {
     var vm = this;
 
     vm.data = {};
@@ -15,11 +15,9 @@ function CheckoutCtrl(eventFactory, paymentFactory) {
         if(checkoutForm.$valid) {
             paymentFactory.pay(vm.data)
                 .then(function(response) {
-                    eventFactory.broadcastError(undefined);
-                    eventFactory.broadcastSuccess('DONE!');
+                    toasterService.success('DONE!');
                 }, function(response) {
-                    eventFactory.broadcastSuccess(undefined);
-                    eventFactory.broadcastError('An error ocurred');
+                    toasterService.error('An error ocurred');
                 });
         }
     }

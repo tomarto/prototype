@@ -4,16 +4,14 @@ angular
     .module('prototype.core')
     .controller('OauthLoginCtrl', OauthLoginCtrl);
 
-function OauthLoginCtrl($state, $stateParams, $sessionStorage, userFactory, eventFactory) {
+function OauthLoginCtrl($state, $stateParams, $sessionStorage, userFactory, toasterService) {
     function init() {
         $sessionStorage.authorization = 'Bearer ' + $stateParams.token;
         userFactory.getUser()
             .then(function(response) {
-                eventFactory.broadcastError(undefined);
                 $state.go('actions');
             }, function(response) {
-                eventFactory.broadcastSuccess(undefined);
-                eventFactory.broadcastError(constant.login.error);
+                toasterService.error(constant.login.error);
             });
     }
 
