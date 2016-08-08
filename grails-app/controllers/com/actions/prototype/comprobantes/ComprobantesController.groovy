@@ -17,7 +17,14 @@ class ComprobantesController extends BaseController {
     @Secured(value = ['isAuthenticated()'], httpMethod = 'POST')
     def save() {
         executeSafelyForJSON("save()", 'Unable to save your file', log) {
-            return comprobantesService.save(request.getFile('file'))
+            return comprobantesService.save(request.getFile('file'), request.getParameter('type'))
+        }
+    }
+
+    @Secured(value = ['isAnonymous()'], httpMethod = 'DELETE')
+    def delete() {
+        executeSafelyForJSON("delete()", 'Unable to delete your files', log) {
+            return comprobantesService.delete()
         }
     }
 }

@@ -4,24 +4,32 @@ angular
     .module('prototype.comprobantes')
     .controller('ComprobantesCtrl', ComprobantesCtrl);
 
-function ComprobantesCtrl($filter, comprobantes) {
-    var vm = this;
+function ComprobantesCtrl(comprobantesResult) {
+    var vm = this,
+        series = 0;
 
     vm.labels = [];
-    vm.data = [[]];
-    vm.comprobantes = comprobantes;
+    vm.series = [];
+    vm.data = [];
+    vm.comprobantesResult = comprobantesResult;
 
     init();
 
     function init() {
-        vm.series = [vm.comprobantes[0].receptor.nombre];
-
-        angular.forEach(vm.comprobantes, function(comprobante) {
-            var fecha = $filter('date')(new Date(comprobante.fecha.month + '/' + comprobante.fecha.day + '/' + comprobante.fecha.year), 'MMM-yyyy');
-            if(vm.labels.indexOf(fecha) === -1) {
-                vm.labels.push(fecha);
-                vm.data[0].push(comprobante.subTotal);
-            }
+        angular.forEach(vm.comprobantesResult, function(tipo, llaveTipo) {
+            vm.data.push([]);
+            vm.series.push(llaveTipo);
+            angular.forEach(tipo, function(comprobantes, fecha) {
+                if(vm.labels.indexOf(fecha) === -1) {
+                    vm.labels.push(fecha);
+                }
+                var subTotal = 0;
+                angular.forEach(comprobantes, function(comprobante) {
+                    subTotal += comprobante.subTotal;
+                });
+                vm.data[series].push(subTotal);
+            });
+            series++;
         });
     }
 }

@@ -9,12 +9,12 @@ function GuardarComprobantesCtrl($state, comprobantesService, toasterService) {
 
     vm.subirXML = subirXML;
 
-    function subirXML(archivos, archivosInvalidos) {
+    function subirXML(archivos, archivosInvalidos, type) {
         vm.archivos = archivos;
         vm.archivosInvalidos = archivosInvalidos;
 
         if(archivos.length) {
-            comprobantesService.save(vm.archivos)
+            comprobantesService.save(vm.archivos, type)
                 .then(function(response) {
                     toasterService.success('Carga completa');
                     $state.go('comprobantes');

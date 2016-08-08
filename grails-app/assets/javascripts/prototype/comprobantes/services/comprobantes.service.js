@@ -7,13 +7,13 @@ angular
 function comprobantesService($http, $q, $timeout, $cacheFactory, $sessionStorage, Upload, pendingRequestFactory) {
     var comprobantesCache = $cacheFactory('comprobantes'),
         factory = {
-            getComprobantes: getComprobantes,
+            get: get,
             save: save
         };
 
     return factory;
 
-    function getComprobantes() {
+    function get() {
         var deferred = $q.defer(),
             cachedComprobantes = comprobantesCache.get('comprobantes'),
             request,
@@ -45,7 +45,7 @@ function comprobantesService($http, $q, $timeout, $cacheFactory, $sessionStorage
         return deferred.promise;
     }
 
-    function save(archivos) {
+    function save(archivos, type) {
         comprobantesCache.remove('comprobantes');
         var deferred = $q.defer(),
             request = pendingRequestFactory.register(),
@@ -60,7 +60,7 @@ function comprobantesService($http, $q, $timeout, $cacheFactory, $sessionStorage
             requestsFailed = 0;
 
         angular.forEach(archivos, function(archivo) {
-            requestOptions.data = {file: archivo};
+            requestOptions.data = {file : archivo, type: type};
             archivo.upload = Upload.upload(requestOptions);
 
             archivo.upload.then(function (success) {

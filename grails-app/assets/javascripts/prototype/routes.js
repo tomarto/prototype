@@ -59,8 +59,8 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
             controller: 'ComprobantesCtrl',
             controllerAs: 'comprobantesCtrl',
             resolve: {
-                comprobantes: function(comprobantesService) {
-                    return comprobantesService.getComprobantes();
+                comprobantesResult: function(comprobantesService) {
+                    return comprobantesService.get();
                 }
             }
         });
