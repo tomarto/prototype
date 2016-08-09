@@ -111,7 +111,6 @@ tasks.stage.doLast() {
 xjc.mustRunAfter clean
 war.mustRunAfter xjc
 
-
 task copyToLib(type: Copy) {
     into "$buildDir/server"
     from(configurations.compile) {
