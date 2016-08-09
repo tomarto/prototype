@@ -61,7 +61,11 @@ dependencies {
     compile "org.grails.plugins:spring-security-rest-gorm:${springSecurityRestVersion}"
     compile "org.grails:grails-core"
     compile "org.springframework.boot:spring-boot-starter-actuator"
-    compile "org.springframework.boot:spring-boot-starter-tomcat"
+    if(System.env.DATABASE_URL == null) {
+        compile "org.springframework.boot:spring-boot-starter-tomcat"
+    } else {
+        provided "org.springframework.boot:spring-boot-starter-tomcat"
+    }
     compile "org.grails:grails-plugin-url-mappings"
     compile "org.grails:grails-plugin-rest"
     compile "org.grails:grails-plugin-codecs"
@@ -80,7 +84,9 @@ dependencies {
     compile "org.grails.plugins:mail:2.0.0.RC6"
     compile "com.stripe:stripe-java:2.6.1"
     console "org.grails:grails-console"
-    compile 'com.github.jsimone:webapp-runner:8.0.30.2'
+    if(System.env.DATABASE_URL != null) {
+        compile 'com.github.jsimone:webapp-runner:8.0.30.2'
+    }
     profile "org.grails.profiles:angular:3.1.8"
     runtime "com.h2database:h2"
     runtime 'org.postgresql:postgresql:9.4-1201-jdbc4'
