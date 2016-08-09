@@ -1,7 +1,7 @@
 import grails.util.BuildSettings
 import grails.util.Environment
 
-def bySecond = timestamp("yyyyMMdd'T'HHmmss")
+def bySecond = timestamp("yyyy-MM-dd'T'HH:mm:ss")
 // See http://logback.qos.ch/manual/groovy.html for details on configuration
 appender('STDOUT', ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
