@@ -28,7 +28,7 @@ environments:
             driverClassName: org.postgresql.Driver
             dialect: org.hibernate.dialect.PostgreSQLDialect
             uri: ec2-107-20-198-81.compute-1.amazonaws.com:5432
-            url: jdbc:postgres://azkqkncaukcsst:ec2-107-20-198-81.compute-1.amazonaws.com:5432/d227qji6s6pbb7?sslmode=require
+            url: jdbc:postgresql://azkqkncaukcsst:ec2-107-20-198-81.compute-1.amazonaws.com:5432/d227qji6s6pbb7?sslmode=require
             username: azkqkncaukcsst
             password: sUUXR__AWQ_AxxJTilZw8t6OR0
             properties:
