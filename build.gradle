@@ -98,7 +98,7 @@ task wrapper(type: Wrapper) {
 }
 
 task stage() {
-    dependsOn clean, war
+    dependsOn clean, xjc, war
 }
 
 tasks.stage.doLast() {
@@ -108,7 +108,9 @@ tasks.stage.doLast() {
     delete fileTree(dir: "build/libs", exclude: "*.war")
 }
 
-war.mustRunAfter clean
+xjc.mustRunAfter clean
+war.mustRunAfter xjc
+
 
 task copyToLib(type: Copy) {
     into "$buildDir/server"
