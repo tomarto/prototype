@@ -1,7 +1,7 @@
 package com.actions.prototype.spring.security
 
 import com.actions.prototype.user.Role
-import com.actions.prototype.user.User
+import com.actions.prototype.user.AppUser
 import com.actions.prototype.user.UserRole
 import grails.plugin.springsecurity.rest.oauth.OauthUser
 import grails.plugin.springsecurity.rest.oauth.OauthUserDetailsService
@@ -36,8 +36,8 @@ class DefaultOauthUserDetailsService implements OauthUserDetailsService {
             Collection<GrantedAuthority> allRoles = userDetails.authorities
             oauthUser = new OauthUser(userDetails.username, userDetails.password, allRoles, userProfile)
         } catch (UsernameNotFoundException unfe) {
-            log.info "User not found. Creating a new one with default roles: ${defaultRoles}"
-            User user = new User(username: userProfile.id, firstName: userProfile.firstName, lastName: userProfile.familyName,
+            log.info "AppUser not found. Creating a new one with default roles: ${defaultRoles}"
+            AppUser user = new AppUser(username: userProfile.id, firstName: userProfile.firstName, lastName: userProfile.familyName,
                     password: userProfile.id).save()
             UserRole.create(user, Role.findByAuthority('ROLE_USER'))
             oauthUser = new OauthUser(userProfile.id, userProfile.id, defaultRoles, userProfile)

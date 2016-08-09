@@ -10,14 +10,14 @@ class UserController extends BaseController {
 
     @Secured(value = ['isAuthenticated()'], httpMethod = 'GET')
     def get() {
-        executeSafelyForJSON("get()", 'Unable to fetch User details', log) {
+        executeSafelyForJSON("get()", 'Unable to fetch AppUser details', log) {
             return userService.getLoggedUser()
         }
     }
 
     @Secured(value = ['isAnonymous()'], httpMethod = 'POST')
     def save(UserCommand userCommand) {
-        executeSafelyForJSON("save($userCommand)", 'Unable to save new User', log) {
+        executeSafelyForJSON("save($userCommand)", 'Unable to save new AppUser', log) {
             return userService.save(userCommand)
         }
     }

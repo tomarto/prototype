@@ -5,7 +5,7 @@ grails {
                 className = 'com.actions.prototype.user.Role'
             }
             userLookup {
-                userDomainClassName = 'com.actions.prototype.user.User'
+                userDomainClassName = 'com.actions.prototype.user.AppUser'
                 authorityJoinClassName = 'com.actions.prototype.user.UserRole'
             }
             rest {

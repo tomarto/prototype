@@ -7,7 +7,7 @@ import org.grails.databinding.BindingFormat
 
 @EqualsAndHashCode(includes = 'username')
 @ToString(includes = 'username', includeNames = true, includePackage = false)
-class User implements Serializable {
+class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1
 
@@ -25,7 +25,7 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
 
-    User(String username, String firstName, String lastName, String password, String email, Date birthDate) {
+    AppUser(String username, String firstName, String lastName, String password, String email, Date birthDate) {
         this()
         this.username = username
         this.firstName = firstName

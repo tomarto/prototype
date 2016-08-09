@@ -1,7 +1,7 @@
 import com.actions.prototype.action.Action
 import com.actions.prototype.json.CustomObjectMarshallers
 import com.actions.prototype.user.Role
-import com.actions.prototype.user.User
+import com.actions.prototype.user.AppUser
 import com.actions.prototype.user.UserRole
 import com.stripe.Stripe
 
@@ -35,7 +35,7 @@ class BootStrap {
             new Role('ROLE_ADMIN').save()
             def userRole = new Role('ROLE_USER').save()
 
-            def testUser = new User(username: 'omar.ortiz', firstName: 'Omar', lastName: 'Ortiz', password: '123456', email: 'omar.ortiz@test.com',
+            def testUser = new AppUser(username: 'omar.ortiz', firstName: 'Omar', lastName: 'Ortiz', password: '123456', email: 'omar.ortiz@test.com',
                     birthDate: Date.parse('MM/dd/yyyy', '11/23/1990')).save()
             UserRole.create(testUser, userRole)
 

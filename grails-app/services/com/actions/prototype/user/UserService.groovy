@@ -16,7 +16,7 @@ class UserService {
     }
 
     def save(UserCommand userCommand) {
-        if (User.findByUsername(userCommand?.username)) {
+        if (AppUser.findByUsername(userCommand?.username)) {
             throw new ConflictedRequestException('Username already exist')
         }
 
@@ -24,7 +24,7 @@ class UserService {
             throw new InvalidRequestException('Please verify the fields and try again')
         }
 
-        User newUser = new User(JSON.parse((userCommand as JSON).toString())).save()
+        AppUser newUser = new AppUser(JSON.parse((userCommand as JSON).toString())).save()
         UserRole.create(newUser, Role.findByAuthority('ROLE_USER'))
 
         return newUser
