@@ -83,6 +83,7 @@ dependencies {
     compile 'com.github.jsimone:webapp-runner:8.0.30.2'
     profile "org.grails.profiles:angular:3.1.8"
     runtime "com.h2database:h2"
+    runtime 'org.postgresql:postgresql:9.4-1201-jdbc4'
     runtime "org.grails.plugins:asset-pipeline"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
