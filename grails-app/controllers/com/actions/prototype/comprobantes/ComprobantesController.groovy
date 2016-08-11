@@ -17,7 +17,7 @@ class ComprobantesController extends BaseController {
     @Secured(value = ['isAuthenticated()'], httpMethod = 'POST')
     def save() {
         executeSafelyForJSON("save()", 'Unable to save your file', log) {
-            return comprobantesService.save(request.getFile('file'), request.getParameter('type'))
+            return comprobantesService.save(request.getFile('file'))
         }
     }
 
