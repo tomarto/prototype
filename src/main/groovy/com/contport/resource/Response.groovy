@@ -1,4 +1,4 @@
-package com.contport
+package com.contport.resource
 
 class Response {
 

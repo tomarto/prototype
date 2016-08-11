@@ -20,7 +20,7 @@ grails {
                     }
                 }
                 oauth {
-                    frontendCallbackUrl = { String tokenValue -> "http://localhost:8080/oauthLogin?token=${tokenValue}" }
+                    frontendCallbackUrl = { String tokenValue -> "${grails.serverURL}oauthLogin?token=${tokenValue}" }
                     facebook {
                         client = org.pac4j.oauth.client.FacebookClient
                         key = '195522433854618'
@@ -80,6 +80,11 @@ grails {
 }
 
 environments {
+    development {
+        grails {
+            serverURL = 'http://localhost:9090/'
+        }
+    }
     production {
         dataSource {
             dbCreate = "update"
@@ -89,6 +94,9 @@ environments {
             url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path + "?sslmode=require"
             username = uri.userInfo.split(":")[0]
             password = uri.userInfo.split(":")[1]
+        }
+        grails {
+            serverURL = 'https://isra-comprobantes.herokuapp.com/'
         }
     }
 }
