@@ -21,7 +21,7 @@ plugins {
 }
 
 version "0.1-SNAPSHOT"
-group "com.prototype"
+group "com.contport"
 
 apply plugin:"eclipse"
 apply plugin:"idea"
@@ -209,8 +209,8 @@ assets {
 }
 
 jaxb {
-    xsdDir = "src/main/resources/schemas/Comprobantes"
+    xsdDir = "src/main/resources/contabilidad/schemas/facturas"
     xjc {
-        generatePackage = "com.actions.prototype.generated.jaxb.comprobantes"
+        generatePackage = "com.contport.contabilidad.generated.jaxb.facturas"
     }
 }

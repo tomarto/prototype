@@ -1,4 +1,4 @@
-# prototype-full
+# contport-full
 Grails/AngularJS
 
 1. Run "gradlew bowerInstall"

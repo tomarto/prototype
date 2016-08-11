@@ -10,7 +10,7 @@
         <asset:stylesheet src="application.css"/>
     </head>
 
-    <body ng-app="prototype" ng-controller="AppCtrl as appCtrl">
+    <body ng-app="contport" ng-controller="AppCtrl as appCtrl">
         <!--[if lte IE 8]>
           <p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="https://www.google.com/chrome/">update your explorer</a> for a better experience.</p>
         <![endif]-->
@@ -51,11 +51,11 @@
                                 </li>
                                 <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="actions">Actions</a></li>
                                 <li ui-sref-active="active" ng-show="appCtrl.user" class="dropdown">
-                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comprobantes <span class="caret"></span></a>
+                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Facturas <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href ui-sref="subirComprobantes">Subir Comprobantes</a></li>
+                                        <li><a href ui-sref="subirFacturas">Subir Facturas</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href ui-sref="comprobantes">Gráficas</a></li>
+                                        <li><a href ui-sref="facturas">Gráficas</a></li>
                                     </ul>
                                 </li>
                                 <li ng-show="appCtrl.user" ng-click="appCtrl.logout()"><a href>Logout</a></li>
@@ -90,6 +90,6 @@
             ga('send', 'pageview');
         </script>
 
-        <asset:javascript src="/prototype/prototype.js" />
+        <asset:javascript src="/contport/contport.js" />
     </body>
 </html>

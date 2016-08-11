@@ -28,7 +28,7 @@ environments:
 grails:
     profile: angular
     codegen:
-        defaultPackage: com.actions.prototype
+        defaultPackage: com.contport
     spring:
         transactionManagement:
             proxies: false

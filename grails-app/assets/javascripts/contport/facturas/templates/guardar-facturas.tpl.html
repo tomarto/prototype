@@ -1,0 +1,51 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">Subir Facturas</div>
+                </div>
+                <div class="panel-body">
+                    <form class="common-form form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-12 controls">
+                                <button ngf-select="guardarFacturasCtrl.subirXML($files, $invalidFiles)"
+                                        multiple accept=".zip" ngf-max-size="50MB"
+                                        class="btn btn-primary" >
+                                    Seleccionar...
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="guardarFacturasCtrl.archivos">
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+            <label>Archivos:</label>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="archivo in guardarFacturasCtrl.archivos">
+                    <span>{{archivo.name}} {{archivo.$errorParam}}</span>
+                    <div class="progress" ng-show="archivo.progress >= 0">
+                        <div class="progress-bar progress-bar-striped" role="progressbar"
+                             ng-class="{active: archivo.progress < 100}" aria-valuenow="{{archivo.progress}}"
+                             aria-valuemin="0" aria-valuemax="100" style="width: {{archivo.progress}}%">
+                            {{archivo.progress}}%
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item" ng-repeat="archivo in guardarFacturasCtrl.archivosInvalidos">
+                    <span>{{archivo.name}} {{archivo.$error}} {{archivo.$errorParam}}</span>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                             style="width: 100%">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
