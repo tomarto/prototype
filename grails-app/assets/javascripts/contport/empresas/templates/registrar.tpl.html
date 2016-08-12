@@ -1,0 +1,135 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title text-center"><strong>Registrar Empresa</strong></div>
+                </div>
+                <div class="panel-body">
+                    <form novalidate name="empresaForm" id="empresaForm" class="common-form form-horizontal">
+                        <div class="form-group" ng-class="empresaForm.rfc.$dirty && (empresaForm.rfc.$error.required || (empresaForm.rfc.$viewValue.length != 0 && empresaForm.rfc.$invalid)) ? 'has-error' : ''">
+                            <label for="rfc" class="col-md-3">RFC *:</label>
+                            <div class="col-md-9">
+                                <input id="rfc" type="text" ng-model="registrarEmpresaCtrl.data.rfc" class="form-control" name="rfc" value="" required minlength="12" maxlength="12" ng-pattern="/[0-9]/g">
+                                <div ng-messages="empresaForm.rfc.$error" role="alert">
+                                    <span ng-show="empresaForm.rfc.$dirty"><span class="help-block" ng-message="required">RFC es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">RFC sólo puede contener números</span>
+                                    <span class="help-block" ng-message="minlength">RFC debe contener 12 números</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.nombre.$dirty && (empresaForm.nombre.$error.required || (empresaForm.nombre.$viewValue.length != 0 && empresaForm.nombre.$invalid)) ? 'has-error' : ''">
+                            <label for="nombre" class="col-md-3">Nombre *:</label>
+                            <div class="col-md-9">
+                                <input id="nombre" type="text" ng-model="registrarEmpresaCtrl.data.nombre" class="form-control" name="nombre" value="" required minlength="3" maxlength="256" ng-pattern="/^[a-zA-Z0-9,. ]*$/">
+                                <div ng-messages="empresaForm.nombre.$error" role="alert">
+                                    <span ng-show="empresaForm.nombre.$dirty"><span class="help-block" ng-message="required">Nombre es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Nombre puede contener letras, números, puntos y comas</span>
+                                    <span class="help-block" ng-message="minlength">Nombre debe contener al menos 3 caracteres</span>
+                                    <span class="help-block" ng-message="maxlength">Nombre debe contener un máximo de 256 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.calle.$dirty && (empresaForm.calle.$error.required || (empresaForm.calle.$viewValue.length != 0 && empresaForm.calle.$invalid)) ? 'has-error' : ''">
+                            <label for="calle" class="col-md-3">Calle *:</label>
+                            <div class="col-md-9">
+                                <input id="calle" type="text" ng-model="registrarEmpresaCtrl.data.calle" class="form-control" name="calle" value="" required minlength="2" maxlength="256" ng-pattern="/^[a-zA-Z0-9,. ]*$/">
+                                <div ng-messages="empresaForm.calle.$error" role="alert">
+                                    <span ng-show="empresaForm.calle.$dirty"><span class="help-block" ng-message="required">Calle es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Calle puede contener letras, números, puntos y comas</span>
+                                    <span class="help-block" ng-message="minlength">Calle debe contener al menos 2 caracteres</span>
+                                    <span class="help-block" ng-message="maxlength">Calle debe contener un máximo de 256 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.noExterior.$dirty && (empresaForm.noExterior.$error.required || (empresaForm.noExterior.$viewValue.length != 0 && empresaForm.noExterior.$invalid)) ? 'has-error' : ''">
+                            <label for="noExterior" class="col-md-3">Número Exterior *:</label>
+                            <div class="col-md-9">
+                                <input id="noExterior" type="text" ng-model="registrarEmpresaCtrl.data.noExterior" class="form-control" name="noExterior" value="" required minlength="1" maxlength="10" ng-pattern="/^[a-zA-Z0-9 ]*$/">
+                                <div ng-messages="empresaForm.noExterior.$error" role="alert">
+                                    <span ng-show="empresaForm.noExterior.$dirty"><span class="help-block" ng-message="required">Número Exterior es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Número Exterior puede contener letras y números</span>
+                                    <span class="help-block" ng-message="maxlength">Número Exterior debe contener un máximo de 10 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.noInterior.$dirty && empresaForm.noInterior.$viewValue.length != 0 && empresaForm.noInterior.$invalid ? 'has-error' : ''">
+                            <label for="noInterior" class="col-md-3">Número Interior:</label>
+                            <div class="col-md-9">
+                                <input id="noInterior" type="text" ng-model="registrarEmpresaCtrl.data.noInterior" class="form-control" name="noInterior" value="" minlength="0" maxlength="10" ng-pattern="/^[a-zA-Z0-9 ]*$/">
+                                <div ng-messages="empresaForm.noInterior.$error" role="alert">
+                                    <span class="help-block" ng-message="pattern">Número Interior puede contener letras y números</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.colonia.$dirty && (empresaForm.colonia.$error.required || (empresaForm.colonia.$viewValue.length != 0 && empresaForm.colonia.$invalid)) ? 'has-error' : ''">
+                            <label for="colonia" class="col-md-3">Colonia *:</label>
+                            <div class="col-md-9">
+                                <input id="colonia" type="text" ng-model="registrarEmpresaCtrl.data.colonia" class="form-control" name="colonia" value="" required minlength="3" maxlength="256" ng-pattern="/^[a-zA-Z0-9,. ]*$/">
+                                <div ng-messages="empresaForm.colonia.$error" role="alert">
+                                    <span ng-show="empresaForm.colonia.$dirty"><span class="help-block" ng-message="required">Colonia es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Colonia puede contener letras, números, puntos y comas</span>
+                                    <span class="help-block" ng-message="minlength">Colonia debe contener al menos 3 caracteres</span>
+                                    <span class="help-block" ng-message="maxlength">Colonia debe contener un máximo de 256 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.municipio.$dirty && (empresaForm.municipio.$error.required || (empresaForm.municipio.$viewValue.length != 0 && empresaForm.municipio.$invalid)) ? 'has-error' : ''">
+                            <label for="municipio" class="col-md-3">Municipio *:</label>
+                            <div class="col-md-9">
+                                <input id="municipio" type="text" ng-model="registrarEmpresaCtrl.data.municipio" class="form-control" name="municipio" value="" required minlength="2" maxlength="256" ng-pattern="/^[a-zA-Z0-9. ]*$/">
+                                <div ng-messages="empresaForm.municipio.$error" role="alert">
+                                    <span ng-show="empresaForm.municipio.$dirty"><span class="help-block" ng-message="required">Municipio es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Municipio puede contener letras, números y puntos</span>
+                                    <span class="help-block" ng-message="minlength">Municipio debe contener al menos 2 caracteres</span>
+                                    <span class="help-block" ng-message="maxlength">Municipio debe contener un máximo de 256 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.estado.$dirty && (empresaForm.estado.$error.required || (empresaForm.estado.$viewValue.length != 0 && empresaForm.estado.$invalid)) ? 'has-error' : ''">
+                            <label for="estado" class="col-md-3">Estado *:</label>
+                            <div class="col-md-9">
+                                <input id="estado" type="text" ng-model="registrarEmpresaCtrl.data.estado" class="form-control" name="estado" value="" required minlength="2" maxlength="256" ng-pattern="/^[a-zA-Z0-9. ]*$/">
+                                <div ng-messages="empresaForm.estado.$error" role="alert">
+                                    <span ng-show="empresaForm.estado.$dirty"><span class="help-block" ng-message="required">Estado es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Estado puede contener letras, números y puntos</span>
+                                    <span class="help-block" ng-message="minlength">Estado debe contener al menos 2 caracteres</span>
+                                    <span class="help-block" ng-message="maxlength">Estado debe contener un máximo de 256 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.pais.$dirty && (empresaForm.pais.$error.required || (empresaForm.pais.$viewValue.length != 0 && empresaForm.pais.$invalid)) ? 'has-error' : ''">
+                            <label for="pais" class="col-md-3">País *:</label>
+                            <div class="col-md-9">
+                                <input id="pais" type="text" ng-model="registrarEmpresaCtrl.data.pais" class="form-control" name="pais" value="" required minlength="2" maxlength="256" ng-pattern="/^[a-zA-Z0-9 ]*$/">
+                                <div ng-messages="empresaForm.pais.$error" role="alert">
+                                    <span ng-show="empresaForm.pais.$dirty"><span class="help-block" ng-message="required">País es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">País puede contener letras y números</span>
+                                    <span class="help-block" ng-message="minlength">País debe contener al menos 2 caracteres</span>
+                                    <span class="help-block" ng-message="maxlength">País debe contener un máximo de 256 caracteres</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="empresaForm.cp.$dirty && (empresaForm.cp.$error.required || (empresaForm.cp.$viewValue.length != 0 && empresaForm.cp.$invalid)) ? 'has-error' : ''">
+                            <label for="cp" class="col-md-3">Código Postal *:</label>
+                            <div class="col-md-9">
+                                <input id="cp" type="text" ng-model="registrarEmpresaCtrl.data.cp" class="form-control" name="cp" value="" required minlength="5" maxlength="5" ng-pattern="/[0-9]/g">
+                                <div ng-messages="empresaForm.cp.$error" role="alert">
+                                    <span ng-show="empresaForm.cp.$dirty"><span class="help-block" ng-message="required">Código Postal es un campo requerido</span></span>
+                                    <span class="help-block" ng-message="pattern">Código Postal debe ser de 5 dígitos</span>
+                                    <span class="help-block" ng-message="minlength">Código Postal debe contener 5 números</span>
+                                    <span class="help-block" ng-message="maxlength">Código Postal debe contener 5 números</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9 controls">
+                                <button ng-click="registrarEmpresaCtrl.registrar(empresaForm)" ng-disabled="empresaForm.$invalid" class="btn btn-primary">Registrar Empresa</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

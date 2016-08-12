@@ -158,6 +158,9 @@ bower {
     'angular-mocks'('1.4.10') {
         source 'angular-mocks.js' >> '/angular/'
     }
+    'angular-messages'('1.4.10') {
+        source 'angular-messages.js' >> '/angular/'
+    }
     'angular-ui-router'('0.2.18') {
         source 'release/angular-ui-router.js' >> '/angular/'
     }

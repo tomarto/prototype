@@ -4,7 +4,7 @@ angular
     .module('contport.core')
     .factory('userFactory', userFactory);
 
-function userFactory($http, $q, $cacheFactory, $sessionStorage, notifyingService, pendingRequestFactory) {
+function userFactory($http, $q, $cacheFactory, $sessionStorage, pendingRequestFactory) {
     var userCache = $cacheFactory('userCache'),
         factory = {
         getUser: getUser,

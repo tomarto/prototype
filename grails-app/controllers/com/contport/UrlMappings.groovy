@@ -20,6 +20,10 @@ class UrlMappings {
                 get '/'(controller: 'facturas', action: 'get')
                 post '/'(controller: 'facturas', action: 'save')
             }
+
+            group '/empresa', {
+                post '/'(controller: 'empresa', action: 'registrar')
+            }
         }
 
         '/**'(view:'/index.gsp')

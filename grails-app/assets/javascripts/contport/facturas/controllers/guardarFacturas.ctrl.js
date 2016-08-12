@@ -20,7 +20,7 @@ function GuardarFacturasCtrl($state, facturasService, toasterService) {
                     $state.go('app.facturas');
                 })
                 .catch(function(response) {
-                    toasterService.error(response + ' archivos fallaron');
+                    toasterService.error('La carga de ' + response + ' archivo(s) ha fallado');
                 });
         }
     }

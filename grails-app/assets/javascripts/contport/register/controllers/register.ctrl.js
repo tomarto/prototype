@@ -24,8 +24,8 @@ function RegisterCtrl($state, userFactory, toasterService) {
         if(registerForm.$valid) {
             userFactory.register(vm.registerData)
                 .then(function(response) {
-                    $state.go('app.login');
                     toasterService.success('You have been successfully registered');
+                    $state.go('app.login');
                 }, function(response) {
                     toasterService.error(response.errorMessage ||
                             'An error ocurred while trying to register user. Please try again later');

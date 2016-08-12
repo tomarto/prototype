@@ -85,6 +85,16 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
                 }
             }
         })
+        .state('app.registrarEmpresa', {
+            url: 'registrar-empresa',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/empresas/registrar.html',
+                    controller: 'RegistrarEmpresaCtrl',
+                    controllerAs: 'registrarEmpresaCtrl'
+                }
+            }
+        })
         .state('app.subirFacturas', {
             url: 'subir-facturas',
             views: {

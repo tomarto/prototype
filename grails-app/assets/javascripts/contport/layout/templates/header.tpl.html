@@ -23,6 +23,12 @@
                 </li>
                 <li ui-sref-active="active" ng-show="headerCtrl.user"><a href ui-sref="app.actions">Actions</a></li>
                 <li ui-sref-active="active" ng-show="headerCtrl.user" class="dropdown">
+                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empresas <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href ui-sref="app.registrarEmpresa">Registrar</a></li>
+                    </ul>
+                </li>
+                <li ui-sref-active="active" ng-show="headerCtrl.user" class="dropdown">
                     <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Facturas <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href ui-sref="app.subirFacturas">Subir Facturas</a></li>
