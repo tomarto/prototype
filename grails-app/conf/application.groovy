@@ -20,7 +20,7 @@ grails {
                     }
                 }
                 oauth {
-                    frontendCallbackUrl = { String tokenValue -> "${grails.serverURL}oauthLogin?token=${tokenValue}" }
+                    frontendCallbackUrl = { String tokenValue -> "${grails.APP_URL}oauthLogin?token=${tokenValue}" }
                     facebook {
                         client = org.pac4j.oauth.client.FacebookClient
                         key = '195522433854618'
@@ -82,7 +82,7 @@ grails {
 environments {
     development {
         grails {
-            serverURL = 'http://localhost:9090/'
+            APP_URL = 'http://localhost:9090/'
         }
     }
     production {
@@ -96,7 +96,7 @@ environments {
             password = uri.userInfo.split(":")[1]
         }
         grails {
-            serverURL = 'https://isra-comprobantes.herokuapp.com/'
+            APP_URL = 'https://isra-comprobantes.herokuapp.com/'
         }
     }
 }
