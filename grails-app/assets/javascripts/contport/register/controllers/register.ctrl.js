@@ -1,7 +1,7 @@
 //= wrapped
 
 angular
-    .module('contport.index')
+    .module('contport.register')
     .controller('RegisterCtrl', RegisterCtrl);
 
 function RegisterCtrl($state, userFactory, toasterService) {
@@ -24,7 +24,7 @@ function RegisterCtrl($state, userFactory, toasterService) {
         if(registerForm.$valid) {
             userFactory.register(vm.registerData)
                 .then(function(response) {
-                    $state.go('login');
+                    $state.go('app.login');
                     toasterService.success('You have been successfully registered');
                 }, function(response) {
                     toasterService.error(response.errorMessage ||

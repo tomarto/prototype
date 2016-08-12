@@ -1,11 +1,12 @@
 //= wrapped
 
 angular
-    .module('contport.index')
+    .module('contport.core')
     .factory('userFactory', userFactory);
 
-function userFactory($http, $q, $sessionStorage, notifyingService, pendingRequestFactory) {
-    var factory = {
+function userFactory($http, $q, $cacheFactory, $sessionStorage, notifyingService, pendingRequestFactory) {
+    var userCache = $cacheFactory('userCache'),
+        factory = {
         getUser: getUser,
         login: login,
         logout: logout,
@@ -16,33 +17,37 @@ function userFactory($http, $q, $sessionStorage, notifyingService, pendingReques
 
     function getUser() {
         var deferred = $q.defer(),
+            cachedUser = userCache.get('userCache'),
             request,
             requestOptions;
 
-        if ($sessionStorage.loggedUser) {
-            deferred.resolve($sessionStorage.loggedUser);
-        } else {
-            request = pendingRequestFactory.register();
-            requestOptions = {
-                url: 'api/user',
-                method: 'GET',
-                headers : {
-                    'Authorization' : $sessionStorage.authorization
-                },
-                timeout: request.timeoutPromise
-            };
+        if($sessionStorage.authorization) {
+            if (cachedUser) {
+                deferred.resolve(cachedUser);
+            } else {
+                request = pendingRequestFactory.register();
+                requestOptions = {
+                    url: 'api/user',
+                    method: 'GET',
+                    headers : {
+                        'Authorization' : $sessionStorage.authorization
+                    },
+                    timeout: request.timeoutPromise
+                };
 
-            $http(requestOptions)
-                .then(function(response) {
-                    $sessionStorage.loggedUser = response.data.result;
-                    notifyingService.notify('login', response.data.result);
-                    deferred.resolve(response.data.result);
-                    pendingRequestFactory.complete(request);
-                })
-                .catch(function(response) {
-                    deferred.reject(response.data);
-                    pendingRequestFactory.complete(request);
-                });
+                $http(requestOptions)
+                    .then(function(response) {
+                        userCache.put('userCache', response.data.result);
+                        deferred.resolve(response.data.result);
+                        pendingRequestFactory.complete(request);
+                    })
+                    .catch(function(response) {
+                        deferred.reject(response.data);
+                        pendingRequestFactory.complete(request);
+                    });
+            }
+        } else {
+            deferred.resolve(null);
         }
 
         return deferred.promise;
@@ -53,9 +58,8 @@ function userFactory($http, $q, $sessionStorage, notifyingService, pendingReques
             request,
             requestOptions;
 
-        delete $sessionStorage.token;
+        userCache.remove('userCache');
         delete $sessionStorage.authorization;
-        delete $sessionStorage.loggedUser;
 
         request = pendingRequestFactory.register();
         requestOptions = {
@@ -96,9 +100,8 @@ function userFactory($http, $q, $sessionStorage, notifyingService, pendingReques
 
         $http(requestOptions)
             .then(function(response) {
-                delete $sessionStorage.token;
+                userCache.remove('userCache');
                 delete $sessionStorage.authorization;
-                delete $sessionStorage.loggedUser;
                 deferred.resolve('Success');
                 pendingRequestFactory.complete(request);
             })

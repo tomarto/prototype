@@ -9,55 +9,101 @@ angular
 function routes($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
-        .state('home', {
+        .state('app', {
+            abstract: true,
             url: '/',
-            templateUrl: '/contport/index/home.html'
+            resolve: {
+                user: function(userFactory) {
+                    return userFactory.getUser();
+                }
+            },
+            views: {
+                'header': {
+                    templateUrl: '/contport/layout/header.html',
+                    controller: 'HeaderCtrl',
+                    controllerAs: 'headerCtrl'
+                },
+                'content': {
+                    templateUrl: '/contport/index/home.html'
+                }
+            }
         })
-        .state('login', {
-            url: '/login',
-            templateUrl: '/contport/index/login.html',
-            controller: 'LoginCtrl',
-            controllerAs: 'loginCtrl'
+        .state('app.home', {
+            url: 'home'
         })
-        .state('register', {
-            url: '/register',
-            templateUrl: '/contport/index/register.html',
-            controller: 'RegisterCtrl',
-            controllerAs: 'registerCtrl'
+        .state('app.login', {
+            url: 'login',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/login/login.html',
+                    controller: 'LoginCtrl',
+                    controllerAs: 'loginCtrl'
+                }
+            }
         })
-        .state('oauthLogin', {
-            url: '/oauthLogin?token',
-            controller: 'OauthLoginCtrl',
-            controllerAs: 'OauthLoginCtrl'
+        .state('app.register', {
+            url: 'register',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/register/register.html',
+                    controller: 'RegisterCtrl',
+                    controllerAs: 'registerCtrl'
+                }
+            }
         })
-        .state('actions', {
-            url: '/actions?searchId',
-            templateUrl: '/contport/index/actions.html',
-            controller: 'ActionCtrl',
-            controllerAs: 'actionCtrl',
+        .state('app.oauthLogin', {
+            url: 'oauthLogin?token',
+            views: {
+                'content@': {
+                    controller: 'OauthLoginCtrl',
+                    controllerAs: 'OauthLoginCtrl'
+                }
+            }
+        })
+        .state('app.actions', {
+            url: 'actions?searchId',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/actions/actions.html',
+                    controller: 'ActionCtrl',
+                    controllerAs: 'actionCtrl'
+                }
+            },
             resolve: {
                 result: function(actionFactory, $stateParams) {
                     return actionFactory.getActions($stateParams.searchId);
                 }
             }
         })
-        .state('checkout', {
-            url: '/checkout',
-            templateUrl: '/contport/index/checkout.html',
-            controller: 'CheckoutCtrl',
-            controllerAs: 'checkoutCtrl'
+        .state('app.checkout', {
+            url: 'checkout',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/index/checkout.html',
+                    controller: 'CheckoutCtrl',
+                    controllerAs: 'checkoutCtrl'
+                }
+            }
         })
-        .state('subirFacturas', {
-            url: '/subir-facturas',
-            templateUrl: '/contport/facturas/guardar-facturas.html',
-            controller: 'GuardarFacturasCtrl',
-            controllerAs: 'guardarFacturasCtrl'
+        .state('app.subirFacturas', {
+            url: 'subir-facturas',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/facturas/guardar-facturas.html',
+                    controller: 'GuardarFacturasCtrl',
+                    controllerAs: 'guardarFacturasCtrl'
+                }
+            }
         })
-        .state('facturas', {
-            url: '/facturas',
-            templateUrl: '/contport/facturas/facturas.html',
-            controller: 'FacturasCtrl',
-            controllerAs: 'facturasCtrl',
+        .state('app.facturas', {
+            url: 'facturas',
+            views: {
+                'content@': {
+                    templateUrl: '/contport/facturas/facturas.html',
+                    controller: 'FacturasCtrl',
+                    controllerAs: 'facturasCtrl'
+                }
+            },
             resolve: {
                 facturasResult: function(facturasService) {
                     return facturasService.get();
@@ -65,7 +111,7 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
             }
         });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
 
     $locationProvider.html5Mode({
         enabled: true,

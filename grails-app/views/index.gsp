@@ -26,49 +26,11 @@
         <treasure-overlay-spinner active='spinner.active'>
 
             <div class="header">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" ng-href="/">Prototype</a>
-                        </div>
-
-                        <div class="collapse navbar-collapse" id="js-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li ui-sref-active="active"><a href ui-sref="home">Home</a></li>
-                                <li ui-sref-active="active" ng-hide="appCtrl.user" class="dropdown">
-                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href ui-sref="login">Login</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href ui-sref="register">Register</a></li>
-                                    </ul>
-                                </li>
-                                <li ui-sref-active="active" ng-show="appCtrl.user"><a href ui-sref="actions">Actions</a></li>
-                                <li ui-sref-active="active" ng-show="appCtrl.user" class="dropdown">
-                                    <a href class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Facturas <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href ui-sref="subirFacturas">Subir Facturas</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href ui-sref="facturas">Gráficas</a></li>
-                                    </ul>
-                                </li>
-                                <li ng-show="appCtrl.user" ng-click="appCtrl.logout()"><a href>Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <div ui-view="header"></div>
             </div>
 
             <div class="container">
-                    <span ng-show="appCtrl.errorMsg" uib-alert="" type="danger" close="" ng-bind="appCtrl.errorMsg"></span>
-                    <span ng-show="appCtrl.successMsg" uib-alert="" type="success" close="" ng-bind="appCtrl.successMsg"></span>
-                    <div ui-view=""></div>
+                <div ui-view="content"></div>
             </div>
 
             <div class="footer">

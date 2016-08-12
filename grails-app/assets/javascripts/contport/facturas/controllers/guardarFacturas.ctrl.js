@@ -17,7 +17,7 @@ function GuardarFacturasCtrl($state, facturasService, toasterService) {
             facturasService.save(vm.archivos)
                 .then(function(response) {
                     toasterService.success('Carga completa');
-                    $state.go('facturas');
+                    $state.go('app.facturas');
                 })
                 .catch(function(response) {
                     toasterService.error(response + ' archivos fallaron');

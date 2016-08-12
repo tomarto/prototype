@@ -1,10 +1,10 @@
 //= wrapped
 
 angular
-    .module('contport.index')
+    .module('contport.actions')
     .controller('ActionCtrl', ActionCtrl);
 
-function ActionCtrl($state, $sessionStorage, $stateParams, result, toasterService) {
+function ActionCtrl($state, $sessionStorage, $stateParams, result, user, toasterService) {
     var vm = this;
 
     vm.data = {};
@@ -29,7 +29,7 @@ function ActionCtrl($state, $sessionStorage, $stateParams, result, toasterServic
     init();
 
     function init() {
-        if ($sessionStorage.loggedUser) {
+        if (user) {
             if (result.errorMessage) {
                 toasterService.error(result.errorMessage);
                 return;
@@ -41,7 +41,7 @@ function ActionCtrl($state, $sessionStorage, $stateParams, result, toasterServic
             vm.totalResults = result.total;
             vm.totalPages = Math.ceil(result.total / vm.data.rows);
         } else {
-            $state.go('home', {}, {location: 'replace'});
+            $state.go('app.home', {}, {location: 'replace'});
         }
     }
 
@@ -55,7 +55,7 @@ function ActionCtrl($state, $sessionStorage, $stateParams, result, toasterServic
             vm.data.offset = 0;
             var newSearchId = Date.now().toString();
             $sessionStorage[newSearchId] = vm.data;
-            $state.go('actions', {searchId: newSearchId});
+            $state.go('app.actions', {searchId: newSearchId});
         }
     }
 
@@ -64,11 +64,13 @@ function ActionCtrl($state, $sessionStorage, $stateParams, result, toasterServic
     }
 
     function changeOffset(offset) {
-        vm.data = retrieveData();
+        if($stateParams.searchId) {
+            vm.data = retrieveData();
+        }
         vm.data.offset = offset * vm.data.rows;
         var newSearchId = Date.now().toString();
         $sessionStorage[newSearchId] = vm.data;
-        $state.go('actions', {searchId: newSearchId});
+        $state.go('app.actions', {searchId: newSearchId});
     }
 
     function getNumber(num) {

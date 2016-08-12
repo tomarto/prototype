@@ -1,7 +1,7 @@
 //= wrapped
 
 angular
-    .module('contport.index')
+    .module('contport.actions')
     .factory('actionFactory', actionFactory);
 
 function actionFactory($http, $q, $cacheFactory, $sessionStorage, pendingRequestFactory) {
