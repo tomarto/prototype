@@ -1,8 +1,8 @@
-import com.contport.marshallers.DateMarshaller
-import com.contport.spring.security.DefaultOauthUserDetailsService
+import com.prototype.marshallers.DateMarshaller
+import com.prototype.spring.security.DefaultOauthUserDetailsService
 import grails.rest.render.json.JsonRenderer
 
-import com.contport.user.AppUser
+import com.prototype.user.AppUser
 
 // Place your Spring DSL code here
 beans = {

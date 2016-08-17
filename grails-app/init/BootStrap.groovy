@@ -1,8 +1,8 @@
-import com.contport.action.Action
-import com.contport.json.CustomObjectMarshallers
-import com.contport.user.Role
-import com.contport.user.AppUser
-import com.contport.user.UserRole
+import com.prototype.action.Action
+import com.prototype.json.CustomObjectMarshallers
+import com.prototype.user.Role
+import com.prototype.user.AppUser
+import com.prototype.user.UserRole
 import com.stripe.Stripe
 
 class BootStrap {

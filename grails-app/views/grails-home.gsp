@@ -21,7 +21,7 @@
     </script>
 </head>
 
-<body ng-app="com.contport" ng-controller="IndexController as vm">
+<body ng-app="com.prototype" ng-controller="IndexController as vm">
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
@@ -107,6 +107,6 @@
         <g:message code="spinner.alt" default="Loading&hellip;"/>
     </div>
 
-    <asset:javascript src="/contport/contport.js" />
+    <asset:javascript src="/prototype/prototype.js" />
 </body>
 </html>

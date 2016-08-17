@@ -2,11 +2,11 @@ grails {
     plugin {
         springsecurity {
             authority {
-                className = 'com.contport.user.Role'
+                className = 'com.prototype.user.Role'
             }
             userLookup {
-                userDomainClassName = 'com.contport.user.AppUser'
-                authorityJoinClassName = 'com.contport.user.UserRole'
+                userDomainClassName = 'com.prototype.user.AppUser'
+                authorityJoinClassName = 'com.prototype.user.UserRole'
             }
             rest {
                 token {
@@ -15,7 +15,7 @@ grails {
                     }
                     storage {
                         gorm {
-                            tokenDomainClassName = 'com.contport.security.AuthenticationToken'
+                            tokenDomainClassName = 'com.prototype.security.AuthenticationToken'
                         }
                     }
                 }

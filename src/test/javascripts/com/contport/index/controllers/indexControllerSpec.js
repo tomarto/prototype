@@ -1,6 +1,6 @@
-describe('contport.index module', function() {
+describe('prototype.index module', function() {
 
-    beforeEach(angular.mock.module('contport.index', function() {
+    beforeEach(angular.mock.module('prototype.index', function() {
     }));
 
     describe("IndexController", function() {

@@ -10,7 +10,7 @@
         <asset:stylesheet src="application.css"/>
     </head>
 
-    <body ng-app="contport" ng-controller="AppCtrl as appCtrl">
+    <body ng-app="prototype" ng-controller="AppCtrl as appCtrl">
         <!--[if lte IE 8]>
           <p class="browsehappy">You are using an <strong>old</strong> browser. Please <a href="https://www.google.com/chrome/">update your explorer</a> for a better experience.</p>
         <![endif]-->
@@ -52,6 +52,6 @@
             ga('send', 'pageview');
         </script>
 
-        <asset:javascript src="/contport/contport.js" />
+        <asset:javascript src="/prototype/prototype.js" />
     </body>
 </html>
