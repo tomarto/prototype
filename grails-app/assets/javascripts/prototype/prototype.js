@@ -3,6 +3,7 @@
 //= require /angular/angular-ui-router
 //= require /angular/angular-animate
 //= require /angular/angular-touch
+//= require /angular/angular-sanitize
 //= require /angular/angular-messages
 //= require /jquery/jquery
 //= require_self
@@ -12,6 +13,7 @@
 //= require /prototype/register/prototype.register
 //= require /prototype/index/prototype.index
 //= require /prototype/actions/prototype.actions
+//= require /prototype/product-detail/prototype.product-detail
 //= require /prototype/routes
 
 angular
@@ -22,6 +24,8 @@ angular
         'prototype.register',
         'prototype.index',
         'prototype.actions',
+        'prototype.productDetail',
         'ngMessages',
+        'ngSanitize',
         'ui.router'
     ]);

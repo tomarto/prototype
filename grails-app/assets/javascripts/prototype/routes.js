@@ -84,6 +84,16 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
                     controllerAs: 'checkoutCtrl'
                 }
             }
+        })
+        .state('app.productDetail', {
+            url: 'product-detail',
+            views: {
+                'content@': {
+                    templateUrl: '/prototype/product-detail/product-detail.html',
+                    controller: 'ProductDetailCtrl',
+                    controllerAs: 'productDetailCtrl'
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/home');

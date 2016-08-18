@@ -1,70 +1,68 @@
-<section class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title text-center"><strong>Checkout</strong></div>
-                </div>
-                <div class="panel-body">
-                    <form novalidate name="checkoutForm" id="checkoutForm" class="common-form form-horizontal">
-                        <div class="form-group" ng-class="checkoutForm.amount.$dirty && (checkoutForm.amount.$error.required || (checkoutForm.amount.$viewValue.length != 0 && checkoutForm.amount.$invalid)) ? 'has-error' : ''">
-                            <label for="amount" class="col-md-3">Amount*:</label>
-                            <div class="col-md-9">
-                                <input id="amount" type="number" ng-model="checkoutCtrl.data.amount" class="form-control" name="amount" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required>
-                                <div role="alert">
-                                    <span class="error help-block" ng-show="checkoutForm.amount.$dirty && checkoutForm.amount.$error.required">Amount is required</span>
-                                    <span class="error control-label" ng-show="checkoutForm.amount.$dirty && checkoutForm.amount.$viewValue.length !== 0 && checkoutForm.amount.$invalid">Amount must be between 0 and 100,000</span>
-                                </div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title text-center"><strong>Checkout</strong></div>
+            </div>
+            <div class="panel-body">
+                <form novalidate name="checkoutForm" id="checkoutForm" class="common-form form-horizontal">
+                    <div class="form-group" ng-class="checkoutForm.amount.$dirty && (checkoutForm.amount.$error.required || (checkoutForm.amount.$viewValue.length != 0 && checkoutForm.amount.$invalid)) ? 'has-error' : ''">
+                        <label for="amount" class="col-md-3">Amount*:</label>
+                        <div class="col-md-9">
+                            <input id="amount" type="number" ng-model="checkoutCtrl.data.amount" class="form-control" name="amount" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required>
+                            <div role="alert">
+                                <span class="error help-block" ng-show="checkoutForm.amount.$dirty && checkoutForm.amount.$error.required">Amount is required</span>
+                                <span class="error control-label" ng-show="checkoutForm.amount.$dirty && checkoutForm.amount.$viewValue.length !== 0 && checkoutForm.amount.$invalid">Amount must be between 0 and 100,000</span>
                             </div>
                         </div>
-                        <div class="form-group" ng-class="checkoutForm.cardNumber.$dirty && (checkoutForm.cardNumber.$error.required || (checkoutForm.cardNumber.$viewValue.length != 0 && checkoutForm.cardNumber.$invalid)) ? 'has-error' : ''">
-                            <label for="cardNumber" class="col-md-3">Card Number*:</label>
-                            <div class="col-md-9">
-                                <input id="cardNumber" type="text" ng-model="checkoutCtrl.data.card.cardNumber" class="form-control" name="cardNumber" required>
-                                <div role="alert">
-                                    <span class="error help-block" ng-show="checkoutForm.cardNumber.$dirty && checkoutForm.cardNumber.$error.required">Card Number is required</span>
-                                    <span class="error control-label" ng-show="checkoutForm.cardNumber.$dirty && checkoutForm.cardNumber.$viewValue.length !== 0 && checkoutForm.cardNumber.$invalid">You must enter a valid Card Number</span>
-                                </div>
+                    </div>
+                    <div class="form-group" ng-class="checkoutForm.cardNumber.$dirty && (checkoutForm.cardNumber.$error.required || (checkoutForm.cardNumber.$viewValue.length != 0 && checkoutForm.cardNumber.$invalid)) ? 'has-error' : ''">
+                        <label for="cardNumber" class="col-md-3">Card Number*:</label>
+                        <div class="col-md-9">
+                            <input id="cardNumber" type="text" ng-model="checkoutCtrl.data.card.cardNumber" class="form-control" name="cardNumber" required>
+                            <div role="alert">
+                                <span class="error help-block" ng-show="checkoutForm.cardNumber.$dirty && checkoutForm.cardNumber.$error.required">Card Number is required</span>
+                                <span class="error control-label" ng-show="checkoutForm.cardNumber.$dirty && checkoutForm.cardNumber.$viewValue.length !== 0 && checkoutForm.cardNumber.$invalid">You must enter a valid Card Number</span>
                             </div>
                         </div>
-                        <div class="form-group" ng-class="checkoutForm.cvc.$dirty && (checkoutForm.cvc.$error.required || (checkoutForm.cvc.$viewValue.length != 0 && checkoutForm.cvc.$invalid)) ? 'has-error' : ''">
-                            <label for="cvc" class="col-md-3">CVC*:</label>
-                            <div class="col-md-9">
-                                <input id="cvc" type="text" ng-model="checkoutCtrl.data.card.cvc" class="form-control" name="cvc" required>
-                                <div role="alert">
-                                    <span class="error help-block" ng-show="checkoutForm.cvc.$dirty && checkoutForm.cvc.$error.required">CVC is required</span>
-                                    <span class="error control-label" ng-show="checkoutForm.cvc.$dirty && checkoutForm.cvc.$viewValue.length !== 0 && checkoutForm.cvc.$invalid">You must enter a valid CVC</span>
-                                </div>
+                    </div>
+                    <div class="form-group" ng-class="checkoutForm.cvc.$dirty && (checkoutForm.cvc.$error.required || (checkoutForm.cvc.$viewValue.length != 0 && checkoutForm.cvc.$invalid)) ? 'has-error' : ''">
+                        <label for="cvc" class="col-md-3">CVC*:</label>
+                        <div class="col-md-9">
+                            <input id="cvc" type="text" ng-model="checkoutCtrl.data.card.cvc" class="form-control" name="cvc" required>
+                            <div role="alert">
+                                <span class="error help-block" ng-show="checkoutForm.cvc.$dirty && checkoutForm.cvc.$error.required">CVC is required</span>
+                                <span class="error control-label" ng-show="checkoutForm.cvc.$dirty && checkoutForm.cvc.$viewValue.length !== 0 && checkoutForm.cvc.$invalid">You must enter a valid CVC</span>
                             </div>
                         </div>
-                        <div class="form-group" ng-class="checkoutForm.expirationMonth.$dirty && (checkoutForm.expirationMonth.$error.required || (checkoutForm.expirationMonth.$viewValue.length != 0 && checkoutForm.expirationMonth.$invalid)) ? 'has-error' : ''">
-                            <label for="expirationMonth" class="col-md-3">Expiration Month*:</label>
-                            <div class="col-md-9">
-                                <input id="expirationMonth" type="text" ng-model="checkoutCtrl.data.card.expirationMonth" class="form-control" name="expirationMonth" required>
-                                <div role="alert">
-                                    <span class="error help-block" ng-show="checkoutForm.expirationMonth.$dirty && checkoutForm.expirationMonth.$error.required">Expiration Month is required</span>
-                                    <span class="error control-label" ng-show="checkoutForm.expirationMonth.$dirty && checkoutForm.expirationMonth.$viewValue.length !== 0 && checkoutForm.expirationMonth.$invalid">You must enter a valid Expiration Month</span>
-                                </div>
+                    </div>
+                    <div class="form-group" ng-class="checkoutForm.expirationMonth.$dirty && (checkoutForm.expirationMonth.$error.required || (checkoutForm.expirationMonth.$viewValue.length != 0 && checkoutForm.expirationMonth.$invalid)) ? 'has-error' : ''">
+                        <label for="expirationMonth" class="col-md-3">Expiration Month*:</label>
+                        <div class="col-md-9">
+                            <input id="expirationMonth" type="text" ng-model="checkoutCtrl.data.card.expirationMonth" class="form-control" name="expirationMonth" required>
+                            <div role="alert">
+                                <span class="error help-block" ng-show="checkoutForm.expirationMonth.$dirty && checkoutForm.expirationMonth.$error.required">Expiration Month is required</span>
+                                <span class="error control-label" ng-show="checkoutForm.expirationMonth.$dirty && checkoutForm.expirationMonth.$viewValue.length !== 0 && checkoutForm.expirationMonth.$invalid">You must enter a valid Expiration Month</span>
                             </div>
                         </div>
-                        <div class="form-group" ng-class="checkoutForm.expirationYear.$dirty && (checkoutForm.expirationYear.$error.required || (checkoutForm.expirationYear.$viewValue.length != 0 && checkoutForm.expirationYear.$invalid)) ? 'has-error' : ''">
-                            <label for="expirationYear" class="col-md-3">Expiration Year*:</label>
-                            <div class="col-md-9">
-                                <input id="expirationYear" type="text" ng-model="checkoutCtrl.data.card.expirationYear" class="form-control" name="expirationYear" required>
-                                <div role="alert">
-                                    <span class="error help-block" ng-show="checkoutForm.expirationYear.$dirty && checkoutForm.expirationYear.$error.required">Expiration Year is required</span>
-                                    <span class="error control-label" ng-show="checkoutForm.expirationYear.$dirty && checkoutForm.expirationYear.$viewValue.length !== 0 && checkoutForm.expirationYear.$invalid">You must enter a valid Expiration Year</span>
-                                </div>
+                    </div>
+                    <div class="form-group" ng-class="checkoutForm.expirationYear.$dirty && (checkoutForm.expirationYear.$error.required || (checkoutForm.expirationYear.$viewValue.length != 0 && checkoutForm.expirationYear.$invalid)) ? 'has-error' : ''">
+                        <label for="expirationYear" class="col-md-3">Expiration Year*:</label>
+                        <div class="col-md-9">
+                            <input id="expirationYear" type="text" ng-model="checkoutCtrl.data.card.expirationYear" class="form-control" name="expirationYear" required>
+                            <div role="alert">
+                                <span class="error help-block" ng-show="checkoutForm.expirationYear.$dirty && checkoutForm.expirationYear.$error.required">Expiration Year is required</span>
+                                <span class="error control-label" ng-show="checkoutForm.expirationYear.$dirty && checkoutForm.expirationYear.$viewValue.length !== 0 && checkoutForm.expirationYear.$invalid">You must enter a valid Expiration Year</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9 controls">
-                                <button ng-click="checkoutCtrl.pay(checkoutForm)" ng-disabled="checkoutForm.$invalid" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Pay</button>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9 controls">
+                            <button ng-click="checkoutCtrl.pay(checkoutForm)" ng-disabled="checkoutForm.$invalid" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Pay</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</section>
+</div>

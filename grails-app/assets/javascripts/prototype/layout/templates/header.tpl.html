@@ -21,6 +21,7 @@
                         <li><a href ui-sref="app.register">Register</a></li>
                     </ul>
                 </li>
+                <li ui-sref-active="active"><a href ui-sref="app.productDetail">Product Detail</a></li>
                 <li ui-sref-active="active" ng-show="headerCtrl.user"><a href ui-sref="app.actions">Actions</a></li>
                 </li>
                 <li ng-show="headerCtrl.user" ng-click="headerCtrl.logout()"><a href>Logout</a></li>

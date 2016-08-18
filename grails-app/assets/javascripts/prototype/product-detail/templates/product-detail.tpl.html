@@ -1,0 +1,76 @@
+<h3>Product Detail</h3>
+<div class="row">
+    <div class="col-md-12">
+        <div class="product col-md-5">
+            <div class="center-block">
+                <img class="img-responsive" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+            </div>
+            <div class="row center-block">
+                <a class="thumbnail col-xs-6 col-md-3">
+                    <img class="img-responsive" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+                </a>
+                <a class="thumbnail col-xs-6 col-md-3">
+                    <img class="img-responsive" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+                </a>
+                <a class="thumbnail col-xs-6 col-md-3">
+                    <img class="img-responsive" src="http://www.corsair.com/Media/catalog/product/g/s/gs600_psu_sideview_blue_2.png" alt=""></img>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h4>{{productDetailCtrl.product.name}}</h4>
+            <div>{{productDetailCtrl.product.shortDescription}}</div>
+            <div><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
+            <hr>
+
+            <h4>{{productDetailCtrl.product.price | currency}}</h4>
+            <h4 class="product-stock" ng-if="productDetailCtrl.product.inStock">In Stock</h4>
+            <h4 class="product-out-of-stock" ng-if="!productDetailCtrl.product.inStock">Out of Stock</h4>
+            <hr>
+
+            <form class="form-horizontal">
+                <div class="form-group" ng-repeat="option in productDetailCtrl.options">
+                    <label for="{{option.name}}" class="col-sm-3 control-label">{{option.displayName}}</label>
+                    <div class="col-sm-9" ng-include="option.templateUrl">
+
+                    </div>
+                </div>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-success" ng-click="productDetailCtrl.addToCart()">
+                        Add to cart
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 product-info">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
+            <li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
+            <li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="service-one">
+                <section class="container product-info" ng-bind-html="productDetailCtrl.product.longDescription">
+
+                </section>
+            </div>
+            <div class="tab-pane fade" id="service-two">
+                <section class="container">
+
+                </section>
+            </div>
+            <div class="tab-pane fade" id="service-three">
+                <section class="container">
+
+                </section>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>

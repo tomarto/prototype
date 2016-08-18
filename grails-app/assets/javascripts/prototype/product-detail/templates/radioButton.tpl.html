@@ -1,0 +1,7 @@
+<div class="radio" ng-repeat="radioButtonOption in option.radioButtonOptions">
+    <label>
+        <input id="{{radioButtonOption.name}}" name="{{radioButtonOption.name}}" type="radio"
+               ng-model="option.value" ng-value="radioButtonOption.name">
+        {{radioButtonOption.displayName}}
+    </label>
+</div>
