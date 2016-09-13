@@ -13,6 +13,11 @@ class UrlMappings {
                 post '/'(controller: 'user', action: 'save')
             }
 
+            group '/product', {
+                get '/rule'(controller: 'rule', action: 'list')
+                post '/rule'(controller: 'rule', action: 'save')
+            }
+
             '/mail/contact'(controller: 'mail', action: 'send')
             post '/pay'(controller: 'payment', action: 'pay')
         }

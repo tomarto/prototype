@@ -1,4 +1,4 @@
-<select id="{{option.name}}" name="{{option.name}}" class="form-control" ng-model="option.value"
-        ng-options="dropdownOption for dropdownOption in option.dropdownOptions">
-    <option></option>
+<select id="{{control.name}}" name="{{control.name}}" class="form-control" ng-model="control.value"
+        ng-options="dropdownOption.value as dropdownOption.value for dropdownOption in control.dropdownOptions">
+    <option>Select</option>
 </select>

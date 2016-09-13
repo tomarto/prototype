@@ -176,6 +176,10 @@ bower {
     'ngstorage'('0.3.x')
     'angular-treasure-overlay-spinner'('1.1.0')
     'angularjs-toaster'('2.0.0')
+    'ng-file-upload-shim'('12.0.4') {
+        source 'ng-file-upload.js' >> '/ng-file-upload/'
+        source 'ng-file-upload-shim.js' >> '/ng-file-upload/'
+    }
 }
 
 karma {

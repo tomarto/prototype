@@ -1,7 +1,7 @@
-<div class="checkbox" ng-repeat="checkBoxOption in option.checkBoxOptions">
+<div class="checkbox" ng-repeat="checkBoxOption in control.checkBoxOptions">
     <label>
         <input id="{{checkBoxOption.name}}" type="checkbox" class="checkbox" name="{{checkBoxOption.name}}"
-               ng-change="productDetailCtrl.multipleCheckboxChecked(option, checkBoxOption)"
-               ng-model="checkBoxOption.value"/> {{checkBoxOption.displayName}}
+               ng-change="productDetailCtrl.multipleCheckboxChecked(control, checkBoxOption)"
+               ng-model="checkBoxOption.value"/> {{checkBoxOption.name}}
     </label>
 </div>

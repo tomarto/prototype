@@ -1,0 +1,154 @@
+<h3>Product Rule</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="ruleName" class="col-sm-3 control-label">Internal Rule Name</label>
+                <div class="col-sm-9">
+                    <input id="ruleName" type="text" class="form-control" ng-model="addProductRuleCtrl.rule.name"
+                           placeholder="Internal Rule Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="displayRuleName" class="col-sm-3 control-label">Display Rule Name</label>
+                <div class="col-sm-9">
+                    <input id="displayRuleName" type="text" class="form-control"
+                           ng-model="addProductRuleCtrl.rule.displayName" placeholder="Display Rule Name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9 controls">
+                    <button type="button" class="btn btn-success" ng-click="addProductRuleCtrl.addNewControl()">
+                        Add Control To Rule
+                    </button>
+                </div>
+            </div>
+
+            <hr ng-show="addProductRuleCtrl.rule.controls.length > 0">
+
+            <div ng-repeat="(controlIndex, control) in addProductRuleCtrl.rule.controls track by $index">
+                <hr>
+                <div class="form-group">
+                    <label for="controlType" class="col-sm-3 control-label">
+                        <a href ng-click="addProductRuleCtrl.removeControlFromRule($index)" class="small">
+                            [Remove]
+                        </a>
+                        Select control to add
+                    </label>
+                    <div class="col-sm-9">
+                        <select id="controlType" name="controlType" class="form-control"
+                                ng-model="addProductRuleCtrl.rule.controls[controlIndex]"
+                                ng-change="addProductRuleCtrl.reset(control)"
+                                ng-options="controlAvailable as controlAvailable.typeName for controlAvailable in addProductRuleCtrl.controlsAvailable">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="internalName" class="col-sm-3 control-label">Internal Name</label>
+                    <div class="col-sm-9">
+                        <input id="internalName" type="text" class="form-control"
+                               ng-model="addProductRuleCtrl.rule.controls[controlIndex].name"
+                               placeholder="Internal Name" ng-disabled="control.type === undefined">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="displayName" class="col-sm-3 control-label">Display Name</label>
+                    <div class="col-sm-9">
+                        <input id="displayName" type="text" class="form-control"
+                               ng-model="addProductRuleCtrl.rule.controls[controlIndex].displayName"
+                               placeholder="Display Name" ng-disabled="control.type === undefined">
+                    </div>
+                </div>
+
+                <div ng-show="control.type === 'dropdown'">
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9 controls">
+                            <button type="button" class="btn btn-success"
+                                    ng-click="addProductRuleCtrl.addValueToDropdown(control)">
+                                Add Value
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-repeat="dropdownValue in control.dropdownOptions track by $index">
+                        <label for="dropdownOption{{$index}}" class="col-sm-3 control-label">
+                            <a href ng-click="addProductRuleCtrl.removeValueFromDropdown($index, control)" class="small">
+                                [Remove]
+                            </a>
+                            Value {{$index + 1}}
+                        </label>
+                        <div class="col-sm-9">
+                            <input id="dropdownOption{{$index}}" type="text" class="form-control"
+                                   ng-model="addProductRuleCtrl.rule.controls[controlIndex].dropdownOptions[$index].value"
+                                   placeholder="Value {{$index + 1}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="control.type === 'checkboxGroup'">
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9 controls">
+                            <button type="button" class="btn btn-success"
+                                    ng-click="addProductRuleCtrl.addValueToCheckbox(control)">
+                                Add Value
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-repeat="checkBoxOption in control.checkBoxOptions track by $index">
+                        <label for="checkBoxOption{{$index}}" class="col-sm-3 control-label">
+                            <a href ng-click="addProductRuleCtrl.removeValueFromCheckbox($index, control)" class="small">
+                                [Remove]
+                            </a>
+                            Value {{$index + 1}}
+                        </label>
+                        <div class="col-sm-9">
+                            <input id="checkBoxOption{{$index}}" type="text" class="form-control"
+                                   ng-model="addProductRuleCtrl.rule.controls[controlIndex].checkBoxOptions[$index].name"
+                                   placeholder="Value {{$index + 1}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="control.type === 'radioButton'">
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9 controls">
+                            <button type="button" class="btn btn-success"
+                                    ng-click="addProductRuleCtrl.addValueToRadio(control)">
+                                Add Value
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-repeat="checkBoxOption in control.radioButtonOptions track by $index">
+                        <label for="radioButtonOption{{$index}}" class="col-sm-3 control-label">
+                            <a href ng-click="addProductRuleCtrl.removeValueFromRadio($index, control)" class="small">
+                                [Remove]
+                            </a>
+                            Value {{$index + 1}}
+                        </label>
+                        <div class="col-sm-9">
+                            <input id="radioButtonOption{{$index}}" type="text" class="form-control"
+                                   ng-model="addProductRuleCtrl.rule.controls[controlIndex].radioButtonOptions[$index].name"
+                                   placeholder="Value {{$index + 1}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9 controls">
+                    <button type="button" class="btn btn-default" ng-click="addProductRuleCtrl.save()"
+                            ng-disabled="!addProductRuleCtrl.rule.controls || addProductRuleCtrl.rule.controls.length === 0">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
