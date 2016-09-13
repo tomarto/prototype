@@ -1,6 +1,7 @@
 package com.prototype.product
 
 import com.prototype.BaseController
+import com.prototype.product.command.RuleCommand
 import grails.plugin.springsecurity.annotation.Secured
 
 class RuleController extends BaseController {

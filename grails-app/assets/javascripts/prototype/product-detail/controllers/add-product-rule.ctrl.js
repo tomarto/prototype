@@ -84,7 +84,7 @@ function AddProductRuleCtrl(productDetailConstants, ruleService, toasterService)
     function save() {
         ruleService.save(vm.rule)
             .then(function(success) {
-                toasterService.success('Success');
+                toasterService.success(success.message);
                 list();
             })
             .catch(function(error) {

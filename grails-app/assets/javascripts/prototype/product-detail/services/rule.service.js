@@ -29,7 +29,7 @@ function ruleService($http, $q, $sessionStorage, pendingRequestFactory) {
 
         $http(requestOptions)
             .then(function(success) {
-                deferred.resolve(success.data);
+                deferred.resolve(success.data.result);
                 pendingRequestFactory.complete(request);
             })
             .catch(function(error) {
@@ -58,7 +58,7 @@ function ruleService($http, $q, $sessionStorage, pendingRequestFactory) {
 
         $http(requestOptions)
             .then(function(success) {
-                deferred.resolve(success.data);
+                deferred.resolve(success.data.result);
                 pendingRequestFactory.complete(request);
             })
             .catch(function(error) {

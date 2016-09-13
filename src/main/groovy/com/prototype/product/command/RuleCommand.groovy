@@ -1,4 +1,4 @@
-package com.prototype.product
+package com.prototype.product.command
 
 import grails.validation.Validateable
 

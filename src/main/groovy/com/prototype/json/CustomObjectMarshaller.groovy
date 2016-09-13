@@ -1,23 +1,28 @@
 package com.prototype.json
 
+import com.prototype.product.response.ControlResponse
+import com.prototype.product.response.OptionResponse
+import grails.converters.JSON
+
 class CustomObjectMarshallers {
     static init() {
         registerMarshallers()
     }
 
     static final EXCLUDE = ['class', 'constraints', 'constraintsMap', 'errors']
+//    static final ID_EXCLUDE = ['id']
 
     private static void registerMarshallers() {
         //Standard Behavior without ID
-//        [
-//                TestClass1, TestClass2
-//        ].each {
-//            JSON.registerObjectMarshaller(it, 7) { return toJSON(it) }
-//        }
+        [
+                ControlResponse, OptionResponse
+        ].each {
+            JSON.registerObjectMarshaller(it, 7) { return toJSON(it) }
+        }
 
         //Custom
-        // JSON.registerObjectMarshaller(UserInfo, 7) { return toJSON(it, ['dn', 'constraints', 'constraintsMap', 'errors'] + ID_EXCLUDE) }
-        // JSON.registerObjectMarshaller(Site, 7) { return toJSON(it, ['parentCompanyName']) }
+//      JSON.registerObjectMarshaller(UserInfo, 7) { return toJSON(it, ['dn', 'constraints', 'constraintsMap', 'errors'] + ID_EXCLUDE) }
+//      JSON.registerObjectMarshaller(Site, 7) { return toJSON(it, ['parentCompanyName']) }
     }
 
     /**
