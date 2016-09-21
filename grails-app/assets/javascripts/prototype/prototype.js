@@ -3,7 +3,6 @@
 //= require /angular/angular-ui-router
 //= require /angular/angular-animate
 //= require /angular/angular-touch
-//= require /angular/angular-sanitize
 //= require /angular/angular-messages
 //= require /jquery/jquery
 //= require_self
@@ -26,6 +25,5 @@ angular
         'prototype.actions',
         'prototype.productDetail',
         'ngMessages',
-        'ngSanitize',
         'ui.router'
     ]);

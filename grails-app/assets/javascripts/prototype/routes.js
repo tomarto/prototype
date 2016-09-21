@@ -104,6 +104,16 @@ function routes($stateProvider, $urlRouterProvider, $locationProvider) {
                     controllerAs: 'addProductRuleCtrl'
                 }
             }
+        })
+        .state('app.addProduct', {
+            url: 'add-product',
+            views: {
+                'content@': {
+                    templateUrl: '/prototype/product-detail/add-product.html',
+                    controller: 'AddProductCtrl',
+                    controllerAs: 'addProductCtrl'
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/home');

@@ -1,0 +1,63 @@
+<h3>Add Product</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal" name="productForm">
+            <div class="form-group">
+                <label for="name" class="col-sm-3 control-label">Product Name</label>
+                <div class="col-sm-9">
+                    <input id="name" type="text" class="form-control" ng-model="addProductCtrl.product.name"
+                           placeholder="Product Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="shortDescription" class="col-sm-3 control-label">Short Description</label>
+                <div class="col-sm-9">
+                    <input id="shortDescription" type="text" class="form-control"
+                           ng-model="addProductCtrl.product.shortDescription" placeholder="Short Description" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-3 control-label">Description</label>
+                <div class="col-sm-9">
+                    <div id="description" text-angular ng-model="addProductCtrl.product.description"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price" class="col-sm-3 control-label">Price $</label>
+                <div class="col-sm-9">
+                    <input id="price" type="number" class="form-control" step="0.01" placeholder="Price"
+                            ng-model="addProductCtrl.product.price" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inventory" class="col-sm-3 control-label">Inventory</label>
+                <div class="col-sm-9">
+                    <input id="inventory" type="number" class="form-control" ng-change="addProductCtrl.changeInventory()"
+                           ng-model="addProductCtrl.product.inventory" placeholder="Inventory">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inStock" class="col-sm-3 control-label">In Stock?</label>
+                <div class="col-sm-9">
+                    <div class="checkbox">
+                        <label>
+                            <input id="inStock" type="checkbox" ng-model="addProductCtrl.product.inStock"
+                                   ng-disabled="addProductCtrl.product.inventory"
+                                   ng-required="!addProductCtrl.product.inventory">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9 controls">
+                    <button type="button" class="btn btn-default" ng-click="addProductCtrl.save()"
+                            ng-disabled="productForm.$invalid">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

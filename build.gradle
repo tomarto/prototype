@@ -180,6 +180,7 @@ bower {
         source 'ng-file-upload.js' >> '/ng-file-upload/'
         source 'ng-file-upload-shim.js' >> '/ng-file-upload/'
     }
+    'textAngular'('1.5.0')
 }
 
 karma {

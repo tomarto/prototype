@@ -14,6 +14,8 @@ class UrlMappings {
             }
 
             group '/product', {
+                post '/'(controller: 'product', action: 'save')
+
                 get '/rule'(controller: 'rule', action: 'list')
                 post '/rule'(controller: 'rule', action: 'save')
             }
