@@ -6,86 +6,172 @@
             </div>
             <div class="panel-body">
                 <form novalidate name="registerForm" id="registerForm" class="common-form form-horizontal">
-                    <div class="form-group" ng-class="registerForm.username.$dirty && (registerForm.username.$error.required || (registerForm.username.$viewValue.length != 0 && registerForm.username.$invalid)) ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.username.$dirty && (registerForm.username.$error.required || (registerForm.username.$viewValue.length != 0 && registerForm.username.$invalid)) ? 'has-error' : ''">
                         <label for="username" class="col-md-3">Username*:</label>
                         <div class="col-md-9">
-                            <input id="username" type="text" ng-model="registerCtrl.registerData.username" class="form-control" name="username" value="" required ng-pattern="/^([a-zA-Z0-9_]){5,25}$/">
-                            <div role="alert">
-                                <span class="error help-block" ng-show="registerForm.username.$dirty && registerForm.username.$error.required">Username is required</span>
-                                <span class="error control-label" ng-show="registerForm.username.$dirty && registerForm.username.$viewValue.length != 0 && registerForm.username.$invalid">Username accepts only alphanumeric and underscores from 5 to 25 characters</span>
+                            <input id="username" type="text" ng-model="registerCtrl.registerData.username"
+                                    class="form-control" name="username" value="" required minlength="5" maxlength="25"
+                                    ng-pattern="/^[a-zA-Z0-9_]*$/">
+                            <div ng-messages="registerForm.username.$error" role="alert">
+                                <span ng-show="registerForm.username.$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Username is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Username accepts only alphanumeric characters and underscores.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    Username must be at least 5 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    Username must be less than 25 characters.
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="registerForm.firstName.$dirty && (registerForm.firstName.$error.required || (registerForm.firstName.$viewValue.length != 0 && registerForm.firstName.$invalid)) ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.firstName.$dirty && (registerForm.firstName.$error.required || (registerForm.firstName.$viewValue.length != 0 && registerForm.firstName.$invalid)) ? 'has-error' : ''">
                         <label for="firstName" class="col-md-3">First Name*:</label>
                         <div class="col-md-9">
-                            <input id="firstName" type="text" ng-model="registerCtrl.registerData.firstName" class="form-control" name="firstName" value="" required ng-pattern="/^([a-zA-Z]){2,25}$/">
-                            <div role="alert">
-                                <span class="error help-block" ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.required">First Name is required</span>
-                                <span class="error control-label" ng-show="registerForm.firstName.$dirty && registerForm.firstName.$viewValue.length != 0 && registerForm.firstName.$invalid">First Name accepts only letters from 2 to 25 characters</span>
+                            <input id="firstName" type="text" ng-model="registerCtrl.registerData.firstName"
+                                    class="form-control" name="firstName" value="" required minlength="2" maxlength="25"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/">
+                            <div ng-messages="registerForm.firstName.$error" role="alert">
+                                <span ng-show="registerForm.firstName.$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        First Name is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    First Name accepts only alphanumeric characters.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    First Name must be at least 2 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    First Name must be less than 25 characters.
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="registerForm.lastName.$dirty && (registerForm.lastName.$error.required || (registerForm.lastName.$viewValue.length != 0 && registerForm.lastName.$invalid)) ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.lastName.$dirty && (registerForm.lastName.$error.required || (registerForm.lastName.$viewValue.length != 0 && registerForm.lastName.$invalid)) ? 'has-error' : ''">
                         <label for="lastName" class="col-md-3">Last Name*:</label>
                         <div class="col-md-9">
-                            <input id="lastName" type="text" ng-model="registerCtrl.registerData.lastName" class="form-control" name="lastName" value="" required ng-pattern="/^([a-zA-Z]){2,25}$/">
-                            <div role="alert">
-                                <span class="error help-block" ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.required">Last Name is required</span>
-                                <span class="error control-label" ng-show="registerForm.lastName.$dirty && registerForm.lastName.$viewValue.length != 0 && registerForm.lastName.$invalid">Last Name accepts only letters from 2 to 25 characters</span>
+                            <input id="lastName" type="text" ng-model="registerCtrl.registerData.lastName"
+                                    class="form-control" name="lastName" value="" required  minlength="2" maxlength="25"
+                                    ng-pattern="/^[a-zA-Z0-9]*$/">
+                            <div ng-messages="registerForm.lastName.$error" role="alert">
+                                <span ng-show="registerForm.lastName.$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Last Name is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Last Name accepts only alphanumeric characters.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    Last Name must be at least 2 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    Last Name must be less than 25 characters.
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="registerForm.password.$dirty && (registerForm.password.$error.required || (registerForm.password.$viewValue.length != 0 && registerForm.password.$invalid)) ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.password.$dirty && (registerForm.password.$error.required || (registerForm.password.$viewValue.length != 0 && registerForm.password.$invalid)) ? 'has-error' : ''">
                         <label for="password" class="col-md-3">Password*:</label>
                         <div class="col-md-9">
-                            <input id="password" type="password" ng-model="registerCtrl.registerData.password" class="form-control" name="password" value="" required ng-pattern="/^([a-zA-Z0-9_.$]){6,16}$/">
-                            <div role="alert">
-                                <span class="error help-block" ng-show="registerForm.password.$dirty && registerForm.password.$error.required">Password is required</span>
-                                <span class="error control-label" ng-show="registerForm.password.$dirty && registerForm.password.$viewValue.length != 0 && registerForm.password.$invalid">Password accepts only alphanumeric, underscores, dots and dollar signs from 6 to 16 characters</span>
+                            <input id="password" type="password" ng-model="registerCtrl.registerData.password"
+                                    class="form-control" name="password" value="" required minlength="6" maxlength="25"
+                                    ng-pattern="/^[a-zA-Z0-9_.$]*$/">
+                            <div ng-messages="registerForm.password.$error" role="alert">
+                                <span ng-show="registerForm.password.$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Password is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Password accepts only alphanumeric, underscores, dots and dollar signs.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    Password must be at least 6 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    Password must be less than 25 characters.
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="registerForm.passwordConfirmation.$dirty && registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.passwordConfirmation.$dirty && registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue ? 'has-error' : ''">
                         <label for="passwordConfirmation" class="col-md-3">Confirm Password*:</label>
                         <div class="col-md-9">
-                            <input id="passwordConfirmation" type="password" ng-model="registerCtrl.registerData.passwordConfirmation" class="form-control" name="passwordConfirmation" value="" required ng-pattern="/^([a-zA-Z0-9_.$]){6,16}$/">
+                            <input id="passwordConfirmation" type="password"  minlength="6" maxlength="16"
+                                   ng-model="registerCtrl.registerData.passwordConfirmation" class="form-control"
+                                   name="passwordConfirmation" value="" required ng-pattern="/^[a-zA-Z0-9_.$]*$/">
                             <div role="alert">
-                                <span class="error control-label" ng-show="registerForm.passwordConfirmation.$dirty && registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue">Both password fields must match</span>
+                                <span class="error control-label"
+                                      ng-show="registerForm.passwordConfirmation.$dirty && registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue">
+                                    Both password fields must match
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="registerForm.email.$dirty && registerForm.email.$invalid && registerForm.email.$viewValue.length != 0 ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.email.$dirty && registerForm.email.$invalid && registerForm.email.$viewValue.length != 0 ? 'has-error' : ''">
                         <label for="email" class="col-md-3">Email:</label>
                         <div class="col-md-9">
-                            <input id="email" type="text" ng-model="registerCtrl.registerData.email" class="form-control" name="email" value="" ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,4}$/">
-                            <div role="alert">
-                                <span class="error control-label" ng-show="registerForm.email.$dirty && registerForm.email.$invalid && registerForm.email.$viewValue.length != 0">Please introduce a valid email</span>
+                            <input id="email" type="text" ng-model="registerCtrl.registerData.email" class="form-control"
+                                    name="email" value="" required
+                                    ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,4}$/">
+                            <div ng-messages="registerForm.email.$error" role="alert">
+                                <span ng-show="registerForm.email.$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Email is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Please introduce a valid email.
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" ng-class="registerForm.birthDate.$dirty && registerForm.birthDate.$invalid && registerForm.birthDate.$viewValue.length != 0 ? 'has-error' : ''">
+                    <div class="form-group"
+                            ng-class="registerForm.birthDate.$dirty && registerForm.birthDate.$invalid && registerForm.birthDate.$viewValue.length != 0 ? 'has-error' : ''">
                         <label for="birthDate" class="col-md-3">Birth Date:</label>
                         <div class="col-md-9">
                             <p class="input-group">
-                                <input id="birthDate" type="text" class="form-control" name="birthDate" uib-datepicker-popup="MM/dd/yyyy" popup-placement="right" ng-model="registerCtrl.birthDate" formatted-date="registerCtrl.registerData.birthDate" is-open="registerCtrl.status.opened" datepicker-options="registerCtrl.dateOptions" close-text="Close" >
+                                <input id="birthDate" type="text" class="form-control" name="birthDate"
+                                       uib-datepicker-popup="MM/dd/yyyy" popup-placement="right"
+                                       ng-model="registerCtrl.birthDate"
+                                       formatted-date="registerCtrl.registerData.birthDate"
+                                       is-open="registerCtrl.status.opened" datepicker-options="registerCtrl.dateOptions"
+                                       close-text="Close" >
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="registerCtrl.openDatepicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
                             </p>
-                            <div role="alert">
-                                <span class="error control-label" ng-show="registerForm.birthDate.$dirty && registerForm.birthDate.$invalid && registerForm.birthDate.$viewValue.length != 0">Please introduce a valid date in format mm/dd/yyyy</span>
+                            <div ng-messages="registerForm.birthDate.$error" role="alert">
+                                <span class="help-block" ng-message="pattern">
+                                    Please introduce a valid date in format mm/dd/yyyy.
+                                </span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9 controls">
-                            <button ng-click="registerCtrl.register(registerForm)" ng-disabled="registerForm.$invalid || registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Register</button>
+                            <button ng-click="registerCtrl.register(registerForm)"
+                                    ng-disabled="registerForm.$invalid || registerForm.passwordConfirmation.$viewValue != registerForm.password.$modelValue" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Register</button>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7 controls">
-                            <a ng-href="/oauth/authenticate/facebook" target="_self" class="btn btn-block btn-social btn-facebook">
+                            <a ng-href="/oauth/authenticate/facebook" target="_self"
+                                    class="btn btn-block btn-social btn-facebook">
                                 <span class="fa fa-facebook"></span>
                                 Register with Facebook
                             </a>

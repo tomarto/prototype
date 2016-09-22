@@ -2,19 +2,55 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="ruleName" class="col-sm-3 control-label">Internal Rule Name</label>
+        <form class="form-horizontal" novalidate name="ruleForm" id="ruleForm">
+            <div class="form-group"
+                    ng-class="ruleForm.name.$dirty && (ruleForm.name.$error.required || (ruleForm.name.$viewValue.length != 0 && ruleForm.name.$invalid)) ? 'has-error' : ''">
+                <label for="name" class="col-sm-3 control-label">Internal Rule Name</label>
                 <div class="col-sm-9">
-                    <input id="ruleName" type="text" class="form-control" ng-model="addProductRuleCtrl.rule.name"
-                           placeholder="Internal Rule Name">
+                    <input id="name" name="name" type="text" class="form-control" ng-model="addProductRuleCtrl.rule.name"
+                           placeholder="Internal Rule Name" required minlength="2" maxlength="50"
+                           ng-pattern="/^[a-zA-Z0-9_]*$/">
+                    <div ng-messages="ruleForm.name.$error" role="alert">
+                        <span ng-show="ruleForm.name.$dirty">
+                            <span class="help-block" ng-message="required">
+                                Internal Rule Name is required
+                            </span>
+                        </span>
+                        <span class="help-block" ng-message="pattern">
+                            Internal Rule Name accepts only alphanumeric characters and underscores.
+                        </span>
+                        <span class="help-block" ng-message="minlength">
+                            Internal Rule Name must be at least 2 characters.
+                        </span>
+                        <span class="help-block" ng-message="maxlength">
+                            Internal Rule Name must be less than 50 characters.
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group"
+                    ng-class="ruleForm.displayRuleName.$dirty && (ruleForm.displayRuleName.$error.required || (ruleForm.displayRuleName.$viewValue.length != 0 && ruleForm.displayRuleName.$invalid)) ? 'has-error' : ''">
                 <label for="displayRuleName" class="col-sm-3 control-label">Display Rule Name</label>
                 <div class="col-sm-9">
-                    <input id="displayRuleName" type="text" class="form-control"
-                           ng-model="addProductRuleCtrl.rule.displayName" placeholder="Display Rule Name">
+                    <input id="displayRuleName" name="displayRuleName" type="text" class="form-control"
+                           ng-model="addProductRuleCtrl.rule.displayName" placeholder="Display Rule Name"
+                           required minlength="2" maxlength="50" ng-pattern="/^[a-zA-Z0-9_ ]*$/">
+                    <div ng-messages="ruleForm.displayRuleName.$error" role="alert">
+                        <span ng-show="ruleForm.displayRuleName.$dirty">
+                            <span class="help-block" ng-message="required">
+                                Display Rule Name is required
+                            </span>
+                        </span>
+                        <span class="help-block" ng-message="pattern">
+                            Display Rule Name accepts only alphanumeric characters, spaces and underscores.
+                        </span>
+                        <span class="help-block" ng-message="minlength">
+                            Display Rule Name must be at least 2 characters.
+                        </span>
+                        <span class="help-block" ng-message="maxlength">
+                            Display Rule Name must be less than 50 characters.
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -30,38 +66,87 @@
 
             <div ng-repeat="(controlIndex, control) in addProductRuleCtrl.rule.controls track by $index">
                 <hr>
-                <div class="form-group">
-                    <label for="controlType" class="col-sm-3 control-label">
-                        <a href ng-click="addProductRuleCtrl.removeControlFromRule($index)" class="small">
+                <div class="form-group"
+                        ng-class="ruleForm['controlType' + $index].$error.required ? 'has-error' : ''">
+                    <label for="controlType{{$index}}" class="col-sm-3 control-label">
+                        <a href ng-click="addProductRuleCtrl.removeControlFromRule($index)" class="small"
+                                ng-if="controlIndex !== 0">
                             [Remove]
                         </a>
                         Select control to add
                     </label>
                     <div class="col-sm-9">
-                        <select id="controlType" name="controlType" class="form-control"
+                        <select id="controlType{{$index}}" name="controlType{{$index}}" class="form-control"
                                 ng-model="addProductRuleCtrl.rule.controls[controlIndex]"
-                                ng-change="addProductRuleCtrl.reset(control)"
-                                ng-options="controlAvailable as controlAvailable.typeName for controlAvailable in addProductRuleCtrl.controlsAvailable">
+                                ng-change="addProductRuleCtrl.reset(addProductRuleCtrl.rule.controls[controlIndex])"
+                                ng-init="addProductRuleCtrl.controlsAvailable[controlIndex] = addProductRuleCtrl.generateControls()"
+                                ng-options="controlAvailable as controlAvailable.typeName for controlAvailable in addProductRuleCtrl.controlsAvailable[controlIndex]"
+                                required>
                             <option></option>
                         </select>
+                        <div ng-messages="ruleForm['controlType' + $index].$error" role="alert">
+                            <span class="help-block" ng-message="required">
+                                Control {{$index + 1}} is required.
+                            </span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="internalName" class="col-sm-3 control-label">Internal Name</label>
+                <div class="form-group"
+                        ng-class="ruleForm['internalName' + $index].$dirty && (ruleForm['internalName' + $index].$error.required || (ruleForm['internalName' + $index].$viewValue.length != 0 && ruleForm['internalName' + $index].$invalid)) ? 'has-error' : ''">
+                    <label for="internalName{{$index}}" class="col-sm-3 control-label">
+                        Control {{$index + 1}} Internal Name
+                    </label>
                     <div class="col-sm-9">
-                        <input id="internalName" type="text" class="form-control"
+                        <input id="internalName{{$index}}" name="internalName{{$index}}" type="text" class="form-control"
                                ng-model="addProductRuleCtrl.rule.controls[controlIndex].name"
-                               placeholder="Internal Name" ng-disabled="control.type === undefined">
+                               placeholder="Internal Name" ng-disabled="!control.type" required
+                               minlength="2" maxlength="50" ng-pattern="/^[a-zA-Z0-9_]*$/">
+                        <div ng-messages="ruleForm['internalName' + $index].$error" role="alert">
+                            <span ng-show="ruleForm['internalName' + $index].$dirty">
+                                <span class="help-block" ng-message="required">
+                                    Control {{$index + 1}} Internal Name is required
+                                </span>
+                            </span>
+                            <span class="help-block" ng-message="pattern">
+                                Control {{$index + 1}} Internal Name accepts only alphanumeric characters and underscores.
+                            </span>
+                            <span class="help-block" ng-message="minlength">
+                                Control {{$index + 1}} Internal Name must be at least 2 characters.
+                            </span>
+                            <span class="help-block" ng-message="maxlength">
+                                Control {{$index + 1}} Internal Name must be less than 50 characters.
+                            </span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="displayName" class="col-sm-3 control-label">Display Name</label>
+                <div class="form-group"
+                        ng-class="ruleForm['displayName' + $index].$dirty && (ruleForm['displayName' + $index].$error.required || (ruleForm['displayName' + $index].$viewValue.length != 0 && ruleForm['displayName' + $index].$invalid)) ? 'has-error' : ''">
+                    <label for="displayName{{$index}}" class="col-sm-3 control-label">
+                        Control {{$index + 1}} Display Name
+                    </label>
                     <div class="col-sm-9">
-                        <input id="displayName" type="text" class="form-control"
+                        <input id="displayName{{$index}}" name="displayName{{$index}}" type="text" class="form-control"
                                ng-model="addProductRuleCtrl.rule.controls[controlIndex].displayName"
-                               placeholder="Display Name" ng-disabled="control.type === undefined">
+                               placeholder="Display Name" ng-disabled="!control.type" required
+                               minlength="2" maxlength="50" ng-pattern="/^[a-zA-Z0-9_ ]*$/">
+                        <div ng-messages="ruleForm['displayName' + $index].$error" role="alert">
+                            <span ng-show="ruleForm['displayName' + $index].$dirty">
+                                <span class="help-block" ng-message="required">
+                                    Control {{$index + 1}} Display Name is required
+                                </span>
+                            </span>
+                            <span class="help-block" ng-message="pattern">
+                                Control {{$index + 1}} Display Name accepts only alphanumeric characters, spaces and underscores.
+                            </span>
+                            <span class="help-block" ng-message="minlength">
+                                Control {{$index + 1}} Display Name must be at least 2 characters.
+                            </span>
+                            <span class="help-block" ng-message="maxlength">
+                                Control {{$index + 1}} Display Name must be less than 50 characters.
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -75,17 +160,36 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-repeat="dropdownValue in control.dropdownOptions track by $index">
+                    <div class="form-group" ng-repeat="dropdownValue in control.dropdownOptions track by $index"
+                            ng-class="ruleForm['dropdownOption' + $index].$dirty && (ruleForm['dropdownOption' + $index].$error.required || (ruleForm['dropdownOption' + $index].$viewValue.length != 0 && ruleForm['dropdownOption' + $index].$invalid)) ? 'has-error' : ''">
                         <label for="dropdownOption{{$index}}" class="col-sm-3 control-label">
-                            <a href ng-click="addProductRuleCtrl.removeValueFromDropdown($index, control)" class="small">
+                            <a href ng-click="addProductRuleCtrl.removeValueFromDropdown($index, control)" class="small"
+                                    ng-if="$index !== 0">
                                 [Remove]
                             </a>
                             Value {{$index + 1}}
                         </label>
                         <div class="col-sm-9">
-                            <input id="dropdownOption{{$index}}" type="text" class="form-control"
-                                   ng-model="addProductRuleCtrl.rule.controls[controlIndex].dropdownOptions[$index].value"
-                                   placeholder="Value {{$index + 1}}">
+                            <input id="dropdownOption{{$index}}" name="dropdownOption{{$index}}" type="text"
+                                    class="form-control" placeholder="Value {{$index + 1}}"
+                                    ng-model="addProductRuleCtrl.rule.controls[controlIndex].dropdownOptions[$index].value"
+                                    required minlength="2" maxlength="50" ng-pattern="/^[a-zA-Z0-9_ ]*$/">
+                            <div ng-messages="ruleForm['dropdownOption' + $index].$error" role="alert">
+                                <span ng-show="ruleForm['dropdownOption' + $index].$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Value {{$index + 1}} is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Value {{$index + 1}} accepts only alphanumeric characters, spaces and underscores.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    Value {{$index + 1}} must be at least 2 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    Value {{$index + 1}} must be less than 50 characters.
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,17 +204,36 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-repeat="checkBoxOption in control.checkBoxOptions track by $index">
+                    <div class="form-group" ng-repeat="checkBoxOption in control.checkBoxOptions track by $index"
+                            ng-class="ruleForm['checkBoxOption' + $index].$dirty && (ruleForm['checkBoxOption' + $index].$error.required || (ruleForm['checkBoxOption' + $index].$viewValue.length != 0 && ruleForm['checkBoxOption' + $index].$invalid)) ? 'has-error' : ''">
                         <label for="checkBoxOption{{$index}}" class="col-sm-3 control-label">
-                            <a href ng-click="addProductRuleCtrl.removeValueFromCheckbox($index, control)" class="small">
+                            <a href ng-click="addProductRuleCtrl.removeValueFromCheckbox($index, control)" class="small"
+                                    ng-if="$index !== 0">
                                 [Remove]
                             </a>
                             Value {{$index + 1}}
                         </label>
                         <div class="col-sm-9">
-                            <input id="checkBoxOption{{$index}}" type="text" class="form-control"
-                                   ng-model="addProductRuleCtrl.rule.controls[controlIndex].checkBoxOptions[$index].name"
-                                   placeholder="Value {{$index + 1}}">
+                            <input id="checkBoxOption{{$index}}" name="checkBoxOption{{$index}}" type="text"
+                                    class="form-control" placeholder="Value {{$index + 1}}"
+                                    ng-model="addProductRuleCtrl.rule.controls[controlIndex].checkBoxOptions[$index].name"
+                                    required minlength="2" maxlength="50" ng-pattern="/^[a-zA-Z0-9_ ]*$/">
+                            <div ng-messages="ruleForm['checkBoxOption' + $index].$error" role="alert">
+                                <span ng-show="ruleForm['checkBoxOption' + $index].$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Value {{$index + 1}} is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Value {{$index + 1}} accepts only alphanumeric characters, spaces and underscores.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    Value {{$index + 1}} must be at least 2 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    Value {{$index + 1}} must be less than 50 characters.
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,17 +248,36 @@
                         </div>
                     </div>
 
-                    <div class="form-group" ng-repeat="checkBoxOption in control.radioButtonOptions track by $index">
+                    <div class="form-group" ng-repeat="checkBoxOption in control.radioButtonOptions track by $index"
+                            ng-class="ruleForm['radioButtonOption' + $index].$dirty && (ruleForm['radioButtonOption' + $index].$error.required || (ruleForm['radioButtonOption' + $index].$viewValue.length != 0 && ruleForm['radioButtonOption' + $index].$invalid)) ? 'has-error' : ''">
                         <label for="radioButtonOption{{$index}}" class="col-sm-3 control-label">
-                            <a href ng-click="addProductRuleCtrl.removeValueFromRadio($index, control)" class="small">
+                            <a href ng-click="addProductRuleCtrl.removeValueFromRadio($index, control)" class="small"
+                                    ng-if="$index !== 0">
                                 [Remove]
                             </a>
                             Value {{$index + 1}}
                         </label>
                         <div class="col-sm-9">
-                            <input id="radioButtonOption{{$index}}" type="text" class="form-control"
-                                   ng-model="addProductRuleCtrl.rule.controls[controlIndex].radioButtonOptions[$index].name"
-                                   placeholder="Value {{$index + 1}}">
+                            <input id="radioButtonOption{{$index}}" name="radioButtonOption{{$index}}" type="text"
+                                    class="form-control" placeholder="Value {{$index + 1}}"
+                                    ng-model="addProductRuleCtrl.rule.controls[controlIndex].radioButtonOptions[$index].name"
+                                    required minlength="2" maxlength="50" ng-pattern="/^[a-zA-Z0-9_ ]*$/">
+                            <div ng-messages="ruleForm['radioButtonOption' + $index].$error" role="alert">
+                                <span ng-show="ruleForm['radioButtonOption' + $index].$dirty">
+                                    <span class="help-block" ng-message="required">
+                                        Value {{$index + 1}} is required
+                                    </span>
+                                </span>
+                                <span class="help-block" ng-message="pattern">
+                                    Value {{$index + 1}} accepts only alphanumeric characters, spaces and underscores.
+                                </span>
+                                <span class="help-block" ng-message="minlength">
+                                    Value {{$index + 1}} must be at least 2 characters.
+                                </span>
+                                <span class="help-block" ng-message="maxlength">
+                                    Value {{$index + 1}} must be less than 50 characters.
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,7 +286,8 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9 controls">
                     <button type="button" class="btn btn-default" ng-click="addProductRuleCtrl.save()"
-                            ng-disabled="!addProductRuleCtrl.rule.controls || addProductRuleCtrl.rule.controls.length === 0">
+                            ng-disabled="ruleForm.$invalid || !addProductRuleCtrl.rule.controls ||
+                                         addProductRuleCtrl.rule.controls.length === 0">
                         Save
                     </button>
                 </div>

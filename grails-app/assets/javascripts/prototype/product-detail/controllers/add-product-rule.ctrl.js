@@ -8,9 +8,9 @@ function AddProductRuleCtrl(productDetailConstants, ruleService, toasterService)
     var vm = this;
 
     vm.rule = {};
-    vm.controlsAvailable = angular.copy(productDetailConstants.controlsAvailable);
 
     vm.addNewControl = addNewControl;
+    vm.generateControls = generateControls;
     vm.removeControlFromRule = removeControlFromRule;
     vm.reset = reset;
     vm.addValueToDropdown = addValueToDropdown;
@@ -24,7 +24,7 @@ function AddProductRuleCtrl(productDetailConstants, ruleService, toasterService)
     init();
 
     function init() {
-
+        addNewControl();
     }
 
     function addNewControl() {
@@ -32,6 +32,10 @@ function AddProductRuleCtrl(productDetailConstants, ruleService, toasterService)
             vm.rule.controls = [];
         }
         vm.rule.controls.push({});
+    }
+
+    function generateControls() {
+        return angular.copy(productDetailConstants.controlsAvailable);
     }
 
     function removeControlFromRule(index) {
@@ -45,6 +49,17 @@ function AddProductRuleCtrl(productDetailConstants, ruleService, toasterService)
             control.dropdownOptions = [];
             control.checkBoxOptions = [];
             control.radioButtonOptions = [];
+        }
+        switch(control.type) {
+            case 'dropdown':
+                addValueToDropdown(control);
+                break;
+            case 'checkboxGroup':
+                addValueToCheckbox(control);
+                break;
+            case 'radioButton':
+                addValueToRadio(control)
+                break;
         }
     }
 

@@ -15,10 +15,11 @@ class UserCommand implements Validateable {
     Date birthDate
 
     static constraints = {
-        username nullable: false, blank: false, minSize: 5, maxSize: 25, matches: '^([a-zA-Z0-9_]){5,25}$'
-        firstName nullable: false, blank: false, minSize: 2, maxSize: 25, matches: '^([a-zA-Z]){2,25}$'
-        lastName nullable: false, blank: false, minSize: 2, maxSize: 25, matches: '^([a-zA-Z]){2,25}$'
-        password nullable: false, blank: false, minSize: 6, maxSize: 16, matches: '^([a-zA-Z0-9_.$]){6,16}$'
+        username nullable: false, blank: false, minSize: 5, maxSize: 25, matches: '^[a-zA-Z0-9_]*$'
+        firstName nullable: false, blank: false, minSize: 2, maxSize: 25, matches: '^[a-zA-Z0-9]*$'
+        lastName nullable: false, blank: false, minSize: 2, maxSize: 25, matches: '^[a-zA-Z0-9]*$'
+        email nullable: false, blank: false, matches: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9]{2,4}$'
+        password nullable: false, blank: false, minSize: 6, maxSize: 25, matches: '^[a-zA-Z0-9_.$]*$'
         passwordConfirmation nullable: false, blank: false, minSize: 6, maxSize: 16, validator: { val, obj, errors ->
             if(obj.password == val) {
                 return true;
@@ -28,6 +29,5 @@ class UserCommand implements Validateable {
             return false
         }
         birthDate nullable: true, blank: true
-        email nullable: true, blank: true
     }
 }

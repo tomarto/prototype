@@ -2,19 +2,49 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form class="form-horizontal" name="productForm">
-            <div class="form-group">
+        <form class="form-horizontal"  novalidate name="productForm" id="productForm">
+            <div class="form-group"
+                    ng-class="productForm.name.$dirty && (productForm.name.$error.required || (productForm.name.$viewValue.length != 0 && productForm.name.$invalid)) ? 'has-error' : ''">
                 <label for="name" class="col-sm-3 control-label">Product Name</label>
                 <div class="col-sm-9">
-                    <input id="name" type="text" class="form-control" ng-model="addProductCtrl.product.name"
-                           placeholder="Product Name" required>
+                    <input id="name" name="name" type="text" class="form-control" ng-model="addProductCtrl.product.name"
+                           placeholder="Product Name" required minlength="2" maxlength="50">
+                    <div ng-messages="productForm.name.$error" role="alert">
+                        <span ng-show="productForm.name.$dirty">
+                            <span class="help-block" ng-message="required">
+                                Product Name is required.
+                            </span>
+                        </span>
+                        <span class="help-block" ng-message="minlength">
+                            Product Name must be at least 2 characters.
+                        </span>
+                        <span class="help-block" ng-message="maxlength">
+                            Product Name must be less than 50 characters.
+                        </span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group"
+                    ng-class="productForm.shortDescription.$dirty && (productForm.shortDescription.$error.required || (productForm.shortDescription.$viewValue.length != 0 && productForm.shortDescription.$invalid)) ? 'has-error' : ''">
                 <label for="shortDescription" class="col-sm-3 control-label">Short Description</label>
                 <div class="col-sm-9">
-                    <input id="shortDescription" type="text" class="form-control"
-                           ng-model="addProductCtrl.product.shortDescription" placeholder="Short Description" required>
+                    <textarea id="shortDescription" name="shortDescription" type="text" class="form-control"
+                            placeholder="Short Description"ng-model="addProductCtrl.product.shortDescription" required
+                            minlength="2" maxlength="500">
+                    </textarea>
+                    <div ng-messages="productForm.shortDescription.$error" role="alert">
+                        <span ng-show="productForm.shortDescription.$dirty">
+                            <span class="help-block" ng-message="required">
+                                Short Description is required.
+                            </span>
+                        </span>
+                        <span class="help-block" ng-message="minlength">
+                            Short Description must be at least 2 characters.
+                        </span>
+                        <span class="help-block" ng-message="maxlength">
+                            Short Description must be less than 500 characters.
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -23,18 +53,28 @@
                     <div id="description" text-angular ng-model="addProductCtrl.product.description"></div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group"
+                    ng-class="productForm.price.$dirty && productForm.price.$error.required ? 'has-error' : ''">
                 <label for="price" class="col-sm-3 control-label">Price $</label>
                 <div class="col-sm-9">
-                    <input id="price" type="number" class="form-control" step="0.01" placeholder="Price"
+                    <input id="price" name="price" type="number" class="form-control" step="0.01" placeholder="Price"
                             ng-model="addProductCtrl.product.price" required>
+                    <div ng-messages="productForm.price.$error" role="alert">
+                        <span ng-show="productForm.price.$dirty">
+                            <span class="help-block" ng-message="required">
+                                Price is required.
+                            </span>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inventory" class="col-sm-3 control-label">Inventory</label>
                 <div class="col-sm-9">
-                    <input id="inventory" type="number" class="form-control" ng-change="addProductCtrl.changeInventory()"
-                           ng-model="addProductCtrl.product.inventory" placeholder="Inventory">
+                    <input id="inventory" name="inventory" type="number" class="form-control"
+                           ng-change="addProductCtrl.changeInventory()"
+                           ng-model="addProductCtrl.product.inventory" placeholder="Inventory"
+                           ng-required="!addProductCtrl.product.inStock">
                 </div>
             </div>
             <div class="form-group">
@@ -42,7 +82,7 @@
                 <div class="col-sm-9">
                     <div class="checkbox">
                         <label>
-                            <input id="inStock" type="checkbox" ng-model="addProductCtrl.product.inStock"
+                            <input id="inStock" name="inStock" type="checkbox" ng-model="addProductCtrl.product.inStock"
                                    ng-disabled="addProductCtrl.product.inventory"
                                    ng-required="!addProductCtrl.product.inventory">
                         </label>

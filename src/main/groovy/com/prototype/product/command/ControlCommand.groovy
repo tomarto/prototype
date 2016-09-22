@@ -15,10 +15,11 @@ class ControlCommand implements Validateable {
     List<OptionCommand> radioButtonOptions
 
     static constraints = {
-        type null: false, blank: false
-        typeName null: false, blank: false
-        name null: false, blank: false
-        displayName null: false, blank: false
-        value null: false, blank: true
+        type nullable: false, blank: false
+        typeName nullable: false, blank: false
+        templateUrl nullable: false, blank: false
+        name nullable: false, blank: false, minSize: 2, maxSize: 50, matches: '^[a-zA-Z0-9_]*$'
+        displayName nullable: false, blank: false, minSize: 2, maxSize: 50, matches: '^[a-zA-Z0-9_ ]*$'
+        value nullable: false, blank: true
     }
 }

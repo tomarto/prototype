@@ -19,7 +19,9 @@ function AddProductCtrl(productService) {
     }
 
     function changeInventory() {
-        delete vm.product.inStock;
+        if(vm.product.inventory) {
+            delete vm.product.inStock;
+        }
     }
 
     function save() {

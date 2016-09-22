@@ -3,6 +3,7 @@ package com.prototype.product
 import com.prototype.product.command.RuleCommand
 import com.prototype.product.response.ControlResponse
 import com.prototype.product.response.OptionResponse
+import com.prototype.product.response.RuleResponse
 import grails.transaction.Transactional
 
 @Transactional
@@ -20,10 +21,13 @@ class RuleService {
     def springSecurityService
 
     def list() {
-        List<List<ControlResponse>> rulesResponse = new ArrayList<>()
-        List<ControlResponse> controlsResponse
+        List<RuleResponse> rulesResponse = new ArrayList<>()
+        RuleResponse ruleResponse
         Rule.findAllByUsername(springSecurityService.currentUser.username).each { rule ->
-            controlsResponse = new ArrayList<>()
+            ruleResponse = new RuleResponse()
+            ruleResponse.controls = new ArrayList<>()
+            ruleResponse.name = rule.name
+            ruleResponse.displayName = rule.displayName
             ControlResponse controlResponse
             rule.controls.each {control ->
                 controlResponse = new ControlResponse()
@@ -48,10 +52,10 @@ class RuleService {
                         controlResponse.radioButtonOptions.add(new OptionResponse(name: radioButtonOption.name, value: false))
                     }
                 }
-                controlsResponse.add(controlResponse)
+                ruleResponse.controls.add(controlResponse)
             }
 
-            rulesResponse.add(controlsResponse)
+            rulesResponse.add(ruleResponse)
         }
 
         return rulesResponse
